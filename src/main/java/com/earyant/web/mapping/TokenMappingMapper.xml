@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.earyant.web.dao.TokenMappingMapper">
+    <resultMap id="BaseResultMap" type="com.earyant.web.pojo.TokenMapping">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="token" property="token" jdbcType="CHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, token
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from token
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from token
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.earyant.web.pojo.TokenMapping">
+        insert into token (id, token)
+        values (#{id,jdbcType=INTEGER}, #{token,jdbcType=CHAR})
+    </insert>
+    <insert id="insertSelective" parameterType="com.earyant.web.pojo.TokenMapping">
+        insert into token
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="token != null">
+                token,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="token != null">
+                #{token,jdbcType=CHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.earyant.web.pojo.TokenMapping">
+        update token
+        <set>
+            <if test="token != null">
+                token = #{token,jdbcType=CHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="java.lang.String">
+        update token
+        set token = #{token}
+        where id = 0
+    </update>
+</mapper>
