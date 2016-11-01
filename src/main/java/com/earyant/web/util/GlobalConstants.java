@@ -1,7 +1,6 @@
 package com.earyant.web.util;
 
 import com.earyant.web.dao.TokenMappingMapper;
-import com.earyant.web.pojo.TokenMapping;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Properties;
@@ -9,7 +8,6 @@ import java.util.Properties;
 public class GlobalConstants {
     public static Properties interfaceUrlProperties;
     @Autowired
-    static
     TokenMappingMapper tokenMappingMapper;
 
     /**
@@ -22,17 +20,17 @@ public class GlobalConstants {
         return (String) interfaceUrlProperties.get(key);
     }
 
-    public static String getToken(String key) {
-        TokenMapping tokenMapping = tokenMappingMapper.selectByPrimaryKey(0);
-        return tokenMapping.getToken();
-    }
-
-    public static void setToken(String key) {
-        TokenMapping mapping = new TokenMapping();
-        mapping.setId(0);
-        mapping.setToken(key);
-        System.out.println("access_tokken  :: " + mapping.getToken());
-        tokenMappingMapper.updateByPrimaryKey(key);
-    }
+//    public  String getToken(String key) {
+//        TokenMapping tokenMapping = tokenMappingMapper.selectByPrimaryKey(0);
+//        return tokenMapping.getToken();
+//    }
+//
+//    public  void setToken(String key) {
+//        TokenMapping mapping = new TokenMapping();
+//        mapping.setId(0);
+//        mapping.setToken(key);
+//        System.out.println("access_tokken  :: " + mapping.getToken());
+//        tokenMappingMapper.updateByPrimaryKey(key);
+//    }
 
 }

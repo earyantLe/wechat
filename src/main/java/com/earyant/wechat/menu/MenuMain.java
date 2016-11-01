@@ -40,7 +40,7 @@ public class MenuMain {
 //		System.out.println(menujson);
         //这里为请求接口的url   +号后面的是token，这里就不做过多对token获取的方法解释
         String url = "https://api.weixin.qq.com/cgi-bin/menu/create?access_token="
-                + GlobalConstants.getToken("access_token");
+                + GlobalConstants.getInterfaceUrl("access_token");
 //				+"usorCQoJ2uxNAqb1ct_Iu6JqCMNzvfHYx3NgWGI77OyTpr8LxelFdaGiSmTvc64Pl27hyaEuZxJ8qrq6KxhFaD5ImGVxY8cA0vjyM0lt0DgHEepWk2f6UskdwjrclVS1UVNfAFAQRJ";
 
         try {

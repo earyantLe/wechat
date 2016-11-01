@@ -19,7 +19,7 @@
 
     </bean>
     <!-- 定义触发时间 -->
-    <bean id="doTimeForToken" class="org.springframework.scheduling.quartz.CronTriggerBean">
+    <bean id="doTimeForToken" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
         <property name="jobDetail">
             <ref bean="jobtaskForToken"/>
         </property>

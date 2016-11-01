@@ -1,11 +1,10 @@
 package com.earyant.wechat.common;
 
-import java.util.HashMap;
-
 import com.earyant.web.util.GlobalConstants;
 import com.earyant.wechat.util.HttpUtils;
-
 import net.sf.json.JSONObject;
+
+import java.util.HashMap;
 
 /**
  * ClassName: GetUseInfo
@@ -27,7 +26,7 @@ public class GetUseInfo {
             throws Exception {
         HashMap<String, String> params = new HashMap<String, String>();
         params.put("access_token",
-                GlobalConstants.getToken("access_token"));  //定时器中获取到的token
+                GlobalConstants.getInterfaceUrl("access_token"));  //定时器中获取到的token
 //		System.out.println(GlobalConstants.getInterfaceUrl("access_token"));
         params.put("openid", openid);  //需要获取的用户的openid
         params.put("lang", "zh_CN");

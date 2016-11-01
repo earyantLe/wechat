@@ -36,7 +36,7 @@ public class WeChatTask {
 //		System.out.println("access_tokken  :: "+access_token);
         GlobalConstants.interfaceUrlProperties.put("access_token", access_token);
 
-        GlobalConstants.setToken(access_token);
+//        new GlobalConstants().setToken(access_token);
         //获取jsticket的执行体
         params.clear();
         params.put("access_token", access_token);

@@ -28,7 +28,7 @@ public class HttpPostUploadUtil {
     public String urlStr;
 
     public HttpPostUploadUtil() {
-        urlStr = "http://file.api.weixin.qq.com/cgi-bin/media/upload?access_token=" + GlobalConstants.getToken("access_token") + "&type=image";
+        urlStr = "http://file.api.weixin.qq.com/cgi-bin/media/upload?access_token=" + GlobalConstants.getInterfaceUrl("access_token") + "&type=image";
     }
 
 
