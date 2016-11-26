@@ -1,21 +1,5 @@
 package com.earyant.wechat.util;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.net.MalformedURLException;
-import java.net.URI;
-import java.net.URL;
-import java.net.URLConnection;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.zip.GZIPInputStream;
-
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
@@ -28,6 +12,17 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
+
+import java.io.*;
+import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URL;
+import java.net.URLConnection;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.zip.GZIPInputStream;
 
 /**
  * ClassName: HttpUtils
@@ -56,12 +51,14 @@ public class HttpUtils {
         try {
             String url = buildUrl(reqUrl, params);
             HttpClient client = new DefaultHttpClient();
-//			System.out.println("========================="+url);
+//            请求超时
+//            client.getParams().setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT, 60000);
+//            读取超时
+//            client.getParams().setParameter(CoreConnectionPNames.SO_TIMEOUT, 60000);
             request.setHeader("Accept-Encoding", "gzip");
             request.setURI(new URI(url));
-
             HttpResponse response = client.execute(request);
-
+//            response.setLocale(new java.util.Locale("zh","CN"));
             inputStream = response.getEntity().getContent();
             String result = getJsonStringFromGZIP(inputStream);
             return result;

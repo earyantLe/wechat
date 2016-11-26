@@ -1,15 +1,19 @@
 package com.earyant.web.util;
 
-import com.earyant.web.dao.TokenMappingMapper;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.ctsig.sys.token.dao.TokenMapper;
+import com.ctsig.sys.token.domain.Token;
+import com.ctsig.sys.token.service.WechatService;
+import org.springframework.stereotype.Controller;
 
+import javax.annotation.Resource;
 import java.util.Properties;
-
+@Controller
 public class GlobalConstants {
     public static Properties interfaceUrlProperties;
-    @Autowired
-    TokenMappingMapper tokenMappingMapper;
-
+    @Resource
+    private TokenMapper tokenMapper;
+    @Resource
+    private static WechatService wechatService;
     /**
      * @param @param  key
      * @param @return
@@ -20,17 +24,18 @@ public class GlobalConstants {
         return (String) interfaceUrlProperties.get(key);
     }
 
-//    public  String getToken(String key) {
+    public  String getToken(String key) {
 //        TokenMapping tokenMapping = tokenMappingMapper.selectByPrimaryKey(0);
-//        return tokenMapping.getToken();
-//    }
-//
-//    public  void setToken(String key) {
-//        TokenMapping mapping = new TokenMapping();
-//        mapping.setId(0);
-//        mapping.setToken(key);
-//        System.out.println("access_tokken  :: " + mapping.getToken());
-//        tokenMappingMapper.updateByPrimaryKey(key);
-//    }
+        return tokenMapper.selectByPrimaryKey(0).getToken();
+//        return "";
+    }
+
+    public static void setToken(String key) {
+        Token mapping = new Token();
+        mapping.setId(0);
+        mapping.setToken(key);
+        System.out.println("access_tokken  :: " + mapping.getToken());
+        wechatService.setToken(key);
+    }
 
 }

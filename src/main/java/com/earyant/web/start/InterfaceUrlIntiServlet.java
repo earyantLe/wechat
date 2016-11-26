@@ -1,5 +1,7 @@
 package com.earyant.web.start;
 
+import com.ctsig.sys.wechat.service.impl.InterfaceUrlInti;
+
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -13,11 +15,13 @@ import javax.servlet.http.HttpServlet;
  */
 public class InterfaceUrlIntiServlet extends HttpServlet {
 
+//    @Resource
+//    InterfaceUrlInti interfaceUrlIntiService;
     private static final long serialVersionUID = 1L;
 
     @Override
     public void init(ServletConfig config) throws ServletException {
-        InterfaceUrlInti.init();
+        InterfaceUrlInti.initDate();
     }
 
 }
