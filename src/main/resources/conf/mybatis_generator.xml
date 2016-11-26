@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+  <classPathEntry location="D:\workspace\spring-mybatis\target\spring-mybatis-0.0.1-SNAPSHOT\WEB-INF\lib\mysql-connector-java-5.1.38.jar" />
+  <context id="mysqlTables" targetRuntime="MyBatis3">
+  	<!-- 去除注释 显示注释false -->
+	<commentGenerator>
+		<property name="suppressAllComments" value="true" />
+	</commentGenerator>
+	<!-- jdbc连接信息 -->
+    <jdbcConnection  driverClass="com.mysql.jdbc.Driver" 
+    	connectionURL="jdbc:mysql://59.42.254.239:3306/cungoudb" 
+    	userId="workapp" password="workapp2015" />
+	
+	<!-- java类型解析器 可选配置 -->
+    <javaTypeResolver >
+      <property name="forceBigDecimals" value="false" />
+    </javaTypeResolver>
+	
+    <javaModelGenerator targetPackage="com.ctsig.sys.user.domain" targetProject="spring-mybatis">
+      <property name="enableSubPackages" value="true" />
+    </javaModelGenerator>
+
+    <sqlMapGenerator targetPackage="com.ctsig.sys.user.dao.mapper"  targetProject="spring-mybatis">
+      <property name="enableSubPackages" value="true" />
+    </sqlMapGenerator>
+    
+    <javaClientGenerator type="XMLMAPPER" targetPackage="com.ctsig.sys.user.dao"  targetProject="spring-mybatis">
+      <property name="enableSubPackages" value="true" />
+    </javaClientGenerator>
+    
+    <!-- 
+	enableInsert：是否生成插入语句。默认是true
+	enableSelectByPrimaryKey：是否通过主键生成选择语句。不管是否有这种设置,如果该表没有一个主键将不会生成。
+	enableUpdateByPrimaryKey：是否通过主键生成更新语句。...
+	enableDeleteByPrimaryKey：是否通过主键生成删除语句。...
+	
+	enableSelectByExample:是否应该生成通过example的选择语句。
+	enableDeleteByExample：是否通过example对象生成删除语句。
+	enableCountByExample：是否通过example对象生成计算行数语句。
+	enableUpdateByExample：是否通过example对象生成更新语句。
+	selectByExampleQueryId：这个值将被添加到选择列表中选择通过例子的声明在本表格:“' 
+    -->
+    <table tableName="user" domainObjectName="SysUser"
+    	enableCountByExample="false" enableUpdateByExample="false"
+		enableDeleteByExample="false" enableSelectByExample="false"
+		selectByExampleQueryId="false" >
+    </table>
+      
+  </context>
+</generatorConfiguration>

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ctsig.sys.privilege.dao.PrivilegeMapper" >
+  <resultMap id="BaseResultMap" type="com.ctsig.sys.privilege.domain.Privilege" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="privilegeName" property="privilegename" jdbcType="VARCHAR" />
+    <result column="page" property="page" jdbcType="VARCHAR" />
+    <result column="pId" property="pId" jdbcType="VARCHAR" />
+    <result column="isMenu" property="ismenu" jdbcType="CHAR" />
+    <result column="privilegeCode" property="privilegecode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, privilegeName, page, pId, isMenu,privilegeCode
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from privilege
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByPid" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from privilege
+    where pId = #{pId,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAllPrivilege" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from privilege
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from privilege
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByPid" parameterType="java.lang.String" >
+    delete from privilege
+    where pId = #{pId,jdbcType=VARCHAR}
+  </delete>
+  
+  <insert id="insert" parameterType="com.ctsig.sys.privilege.domain.Privilege" >
+    insert into privilege (id, privilegeName, page, 
+      pId, isMenu,privilegeCode)
+    values (#{id,jdbcType=VARCHAR}, #{privilegename,jdbcType=VARCHAR}, #{page,jdbcType=VARCHAR}, 
+      #{pId,jdbcType=VARCHAR}, #{ismenu,jdbcType=CHAR},#{privilegecode,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ctsig.sys.privilege.domain.Privilege" >
+    insert into privilege
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="privilegename != null" >
+        privilegeName,
+      </if>
+      <if test="page != null" >
+        page,
+      </if>
+      <if test="pId != null" >
+        pId,
+      </if>
+      <if test="ismenu != null" >
+        isMenu,
+      </if>
+       <if test="privilegecode != null" >
+        privilegeCode
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="privilegename != null" >
+        #{privilegename,jdbcType=VARCHAR},
+      </if>
+      <if test="page != null" >
+        #{page,jdbcType=VARCHAR},
+      </if>
+      <if test="pId != null" >
+        #{pId,jdbcType=VARCHAR},
+      </if>
+      <if test="ismenu != null" >
+        #{ismenu,jdbcType=CHAR},
+      </if>
+      <if test="privilegecode != null" >
+        #{privilegecode,jdbcType=VARCHAR}
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ctsig.sys.privilege.domain.Privilege" >
+    update privilege
+    <set >
+      <if test="privilegename != null" >
+        privilegeName = #{privilegename,jdbcType=VARCHAR},
+      </if>
+      <if test="page != null" >
+        page = #{page,jdbcType=VARCHAR},
+      </if>
+      <if test="pId != null" >
+        pId = #{pId,jdbcType=VARCHAR},
+      </if>
+      <if test="ismenu != null" >
+        isMenu = #{ismenu,jdbcType=CHAR},
+      </if>
+      <if test="privilegecode != null" >
+        privilegeCode= #{privilegecode,jdbcType=VARCHAR}
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ctsig.sys.privilege.domain.Privilege" >
+    update privilege
+    set privilegeName = #{privilegename,jdbcType=VARCHAR},
+      page = #{page,jdbcType=VARCHAR},
+      pId = #{pId,jdbcType=VARCHAR},
+      isMenu = #{ismenu,jdbcType=CHAR},
+      privilegeCode= #{privilegecode,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

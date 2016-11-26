@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:util="http://www.springframework.org/schema/util" 
+    xmlns:mvc="http://www.springframework.org/schema/mvc"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:task="http://www.springframework.org/schema/task"	
+	xsi:schemaLocation="
+	   http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.1.xsd
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.1.xsd
+       http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.1.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.1.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.1.xsd
+         http://www.springframework.org/schema/task
+         http://www.springframework.org/schema/task/spring-task-3.0.xsd">
+
+	<context:component-scan base-package="com.ctsig.common.quartz" />
+	<task:annotation-driven scheduler="qbScheduler" mode="proxy"/>  
+    <task:scheduler id="qbScheduler" pool-size="10"/>
+    <!-- 定时任务 -->
+	<!-- 加入定时任务类 -->
+	<bean id="hand" class="com.ctsig.common.quartz.DemoTask"></bean>
+	<!-- 任务调度拦截 -->
+	<bean id="jobHand" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+	  <property name="targetObject">
+	    <ref bean="hand"/><!-- 指定具体拦截哪个定时任务 -->
+	  </property>
+	  <property name="targetMethod">
+	    <value>execute</value><!-- 指定要执行的类里面的哪个方法 -->
+	  </property>
+	</bean>
+	<!-- 用cron表达式定义定时任务执行时间 -->
+	<bean id="dohand" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+	  <property name="jobDetail">
+         <ref bean="jobHand"/><!-- 指明要调用哪个任务 -->
+      </property>
+      <!-- cron表达式 -->
+      <property name="cronExpression">
+          <!-- 每天凌晨1点执行 -->
+          <value>0 0/1 * * * ?</value>
+      </property>
+	</bean>
+	<!-- 让spring来自动管理quartz -->
+	<bean id="startQuertz" lazy-init="false" autowire="no" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+            <property name="triggers">
+                <list>
+                    <ref bean="dohand"/>
+					<!--<ref bean="get_token"></ref>-->
+                </list>
+            </property>
+    </bean>
+
+	<!--&lt;!&ndash; 用cron表达式定义定时任务执行时间 &ndash;&gt;-->
+	<!--<bean id="get_token" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">-->
+		<!--<property name="jobDetail">-->
+			<!--<ref bean="get_token_bean"/>&lt;!&ndash; 指明要调用哪个任务 &ndash;&gt;-->
+		<!--</property>-->
+		<!--&lt;!&ndash; cron表达式 &ndash;&gt;-->
+		<!--<property name="cronExpression">-->
+			<!--&lt;!&ndash; 每天凌晨1点执行 &ndash;&gt;-->
+			<!--<value>0 0/1 * * * ?</value>-->
+		<!--</property>-->
+	<!--</bean>-->
+
+	<!--<bean id="get_token_bean" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">-->
+		<!--<property name="targetObject">-->
+			<!--<ref bean="Token"/>&lt;!&ndash; 指定具体拦截哪个定时任务 &ndash;&gt;-->
+		<!--</property>-->
+		<!--<property name="targetMethod">-->
+			<!--<value>setTokens</value>&lt;!&ndash; 指定要执行的类里面的哪个方法 &ndash;&gt;-->
+		<!--</property>-->
+	<!--</bean>-->
+	<!--<bean id="Token" class="com.ctsig.sys.token.service.impl.WechatServiceImpl"></bean>-->
+
+</beans>

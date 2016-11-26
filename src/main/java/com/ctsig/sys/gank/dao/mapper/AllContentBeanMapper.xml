@@ -1,0 +1,398 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ctsig.sys.gank.dao.AllContentBeanMapper">
+    <resultMap id="BaseResultMap" type="com.ctsig.sys.gank.domain.AllContentBean">
+        <id column="t_id" jdbcType="INTEGER" property="tId"/>
+        <result column="t_content_id" jdbcType="CHAR" property="tContentId"/>
+        <result column="t_createdAt" jdbcType="CHAR" property="tCreatedat"/>
+        <result column="t_desc" jdbcType="CHAR" property="tDesc"/>
+        <result column="t_publishedAt" jdbcType="CHAR" property="tPublishedat"/>
+        <result column="t_source" jdbcType="CHAR" property="tSource"/>
+        <result column="t_type" jdbcType="CHAR" property="tType"/>
+        <result column="t_used" jdbcType="CHAR" property="tUsed"/>
+        <result column="t_who" jdbcType="CHAR" property="tWho"/>
+    </resultMap>
+    <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.ctsig.sys.gank.domain.AllContentBeanWithBLOBs">
+        <result column="t_images" jdbcType="LONGVARCHAR" property="tImages"/>
+        <result column="t_url" jdbcType="LONGVARCHAR" property="tUrl"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    t_id, t_content_id, t_createdAt, t_desc, t_publishedAt, t_source, t_type, t_used, 
+    t_who
+  </sql>
+    <sql id="Blob_Column_List">
+    t_images, t_url
+  </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+        select
+        <include refid="Base_Column_List"/>
+        ,
+        <include refid="Blob_Column_List"/>
+        from t_all_content
+        where t_id = #{tId,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_all_content
+    where t_id = #{tId,jdbcType=INTEGER}
+  </delete>
+    <insert id="insert" parameterType="com.ctsig.sys.gank.domain.AllContentBeanWithBLOBs">
+    insert into t_all_content (t_id, t_content_id, t_createdAt, 
+      t_desc, t_publishedAt, t_source, 
+      t_type, t_used, t_who, t_images, 
+      t_url)
+    values (#{tId,jdbcType=INTEGER}, #{tContentId,jdbcType=CHAR}, #{tCreatedat,jdbcType=CHAR}, 
+      #{tDesc,jdbcType=CHAR}, #{tPublishedat,jdbcType=CHAR}, #{tSource,jdbcType=CHAR}, 
+      #{tType,jdbcType=CHAR}, #{tUsed,jdbcType=CHAR}, #{tWho,jdbcType=CHAR}, #{tImages,jdbcType=LONGVARCHAR}, 
+      #{tUrl,jdbcType=LONGVARCHAR})
+  </insert>
+    <insert id="insertSelective" parameterType="com.ctsig.sys.gank.domain.AllContentBeanWithBLOBs">
+        insert into t_all_content
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="tId != null">
+                t_id,
+            </if>
+            <if test="tContentId != null">
+                t_content_id,
+            </if>
+            <if test="tCreatedat != null">
+                t_createdAt,
+            </if>
+            <if test="tDesc != null">
+                t_desc,
+            </if>
+            <if test="tPublishedat != null">
+                t_publishedAt,
+            </if>
+            <if test="tSource != null">
+                t_source,
+            </if>
+            <if test="tType != null">
+                t_type,
+            </if>
+            <if test="tUsed != null">
+                t_used,
+            </if>
+            <if test="tWho != null">
+                t_who,
+            </if>
+            <if test="tImages != null">
+                t_images,
+            </if>
+            <if test="tUrl != null">
+                t_url,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="tId != null">
+                #{tId,jdbcType=INTEGER},
+            </if>
+            <if test="tContentId != null">
+                #{tContentId,jdbcType=CHAR},
+            </if>
+            <if test="tCreatedat != null">
+                #{tCreatedat,jdbcType=CHAR},
+            </if>
+            <if test="tDesc != null">
+                #{tDesc,jdbcType=CHAR},
+            </if>
+            <if test="tPublishedat != null">
+                #{tPublishedat,jdbcType=CHAR},
+            </if>
+            <if test="tSource != null">
+                #{tSource,jdbcType=CHAR},
+            </if>
+            <if test="tType != null">
+                #{tType,jdbcType=CHAR},
+            </if>
+            <if test="tUsed != null">
+                #{tUsed,jdbcType=CHAR},
+            </if>
+            <if test="tWho != null">
+                #{tWho,jdbcType=CHAR},
+            </if>
+            <if test="tImages != null">
+                #{tImages,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="tUrl != null">
+                #{tUrl,jdbcType=LONGVARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.ctsig.sys.gank.domain.AllContentBeanWithBLOBs">
+        update t_all_content
+        <set>
+            <if test="tContentId != null">
+                t_content_id = #{tContentId,jdbcType=CHAR},
+            </if>
+            <if test="tCreatedat != null">
+                t_createdAt = #{tCreatedat,jdbcType=CHAR},
+            </if>
+            <if test="tDesc != null">
+                t_desc = #{tDesc,jdbcType=CHAR},
+            </if>
+            <if test="tPublishedat != null">
+                t_publishedAt = #{tPublishedat,jdbcType=CHAR},
+            </if>
+            <if test="tSource != null">
+                t_source = #{tSource,jdbcType=CHAR},
+            </if>
+            <if test="tType != null">
+                t_type = #{tType,jdbcType=CHAR},
+            </if>
+            <if test="tUsed != null">
+                t_used = #{tUsed,jdbcType=CHAR},
+            </if>
+            <if test="tWho != null">
+                t_who = #{tWho,jdbcType=CHAR},
+            </if>
+            <if test="tImages != null">
+                t_images = #{tImages,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="tUrl != null">
+                t_url = #{tUrl,jdbcType=LONGVARCHAR},
+            </if>
+        </set>
+        where t_id = #{tId,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.ctsig.sys.gank.domain.AllContentBeanWithBLOBs">
+    update t_all_content
+    set t_content_id = #{tContentId,jdbcType=CHAR},
+      t_createdAt = #{tCreatedat,jdbcType=CHAR},
+      t_desc = #{tDesc,jdbcType=CHAR},
+      t_publishedAt = #{tPublishedat,jdbcType=CHAR},
+      t_source = #{tSource,jdbcType=CHAR},
+      t_type = #{tType,jdbcType=CHAR},
+      t_used = #{tUsed,jdbcType=CHAR},
+      t_who = #{tWho,jdbcType=CHAR},
+      t_images = #{tImages,jdbcType=LONGVARCHAR},
+      t_url = #{tUrl,jdbcType=LONGVARCHAR}
+    where t_id = #{tId,jdbcType=INTEGER}
+  </update>
+    <update id="updateByPrimaryKey" parameterType="com.ctsig.sys.gank.domain.AllContentBean">
+    update t_all_content
+    set t_content_id = #{tContentId,jdbcType=CHAR},
+      t_createdAt = #{tCreatedat,jdbcType=CHAR},
+      t_desc = #{tDesc,jdbcType=CHAR},
+      t_publishedAt = #{tPublishedat,jdbcType=CHAR},
+      t_source = #{tSource,jdbcType=CHAR},
+      t_type = #{tType,jdbcType=CHAR},
+      t_used = #{tUsed,jdbcType=CHAR},
+      t_who = #{tWho,jdbcType=CHAR}
+    where t_id = #{tId,jdbcType=INTEGER}
+  </update>
+    <resultMap id="BaseResultMap" type="com.ctsig.sys.gank.domain.AllContentBean">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="content_id" jdbcType="CHAR" property="contentId"/>
+        <result column="createdAt" jdbcType="CHAR" property="createdat"/>
+        <result column="desc" jdbcType="CHAR" property="desc"/>
+        <result column="publishedAt" jdbcType="CHAR" property="publishedat"/>
+        <result column="source" jdbcType="CHAR" property="source"/>
+        <result column="type" jdbcType="CHAR" property="type"/>
+        <result column="used" jdbcType="CHAR" property="used"/>
+        <result column="who" jdbcType="CHAR" property="who"/>
+    </resultMap>
+    <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.ctsig.sys.gank.domain.AllContentBeanWithBLOBs">
+        <result column="images" jdbcType="LONGVARCHAR" property="images"/>
+        <result column="url" jdbcType="LONGVARCHAR" property="url"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, content_id, createdAt, desc, publishedAt, source, type, used, who
+  </sql>
+    <sql id="Blob_Column_List">
+    images, url
+  </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+        select
+        <include refid="Base_Column_List"/>
+        ,
+        <include refid="Blob_Column_List"/>
+        from t_all_content
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_all_content
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+    <insert id="insert" parameterType="com.ctsig.sys.gank.domain.AllContentBeanWithBLOBs">
+    insert into t_all_content (id, content_id, createdAt, 
+      desc, publishedAt, source, type, 
+      used, who, images, url
+      )
+    values (#{id,jdbcType=INTEGER}, #{contentId,jdbcType=CHAR}, #{createdat,jdbcType=CHAR}, 
+      #{desc,jdbcType=CHAR}, #{publishedat,jdbcType=CHAR}, #{source,jdbcType=CHAR}, #{type,jdbcType=CHAR}, 
+      #{used,jdbcType=CHAR}, #{who,jdbcType=CHAR}, #{images,jdbcType=LONGVARCHAR}, #{url,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+    <insert id="insertSelective" parameterType="com.ctsig.sys.gank.domain.AllContentBeanWithBLOBs">
+        insert into t_all_content
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="contentId != null">
+                content_id,
+            </if>
+            <if test="createdat != null">
+                createdAt,
+            </if>
+            <if test="desc != null">
+                desc,
+            </if>
+            <if test="publishedat != null">
+                publishedAt,
+            </if>
+            <if test="source != null">
+                source,
+            </if>
+            <if test="type != null">
+                type,
+            </if>
+            <if test="used != null">
+                used,
+            </if>
+            <if test="who != null">
+                who,
+            </if>
+            <if test="images != null">
+                images,
+            </if>
+            <if test="url != null">
+                url,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="contentId != null">
+                #{contentId,jdbcType=CHAR},
+            </if>
+            <if test="createdat != null">
+                #{createdat,jdbcType=CHAR},
+            </if>
+            <if test="desc != null">
+                #{desc,jdbcType=CHAR},
+            </if>
+            <if test="publishedat != null">
+                #{publishedat,jdbcType=CHAR},
+            </if>
+            <if test="source != null">
+                #{source,jdbcType=CHAR},
+            </if>
+            <if test="type != null">
+                #{type,jdbcType=CHAR},
+            </if>
+            <if test="used != null">
+                #{used,jdbcType=CHAR},
+            </if>
+            <if test="who != null">
+                #{who,jdbcType=CHAR},
+            </if>
+            <if test="images != null">
+                #{images,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="url != null">
+                #{url,jdbcType=LONGVARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.ctsig.sys.gank.domain.AllContentBeanWithBLOBs">
+        update t_all_content
+        <set>
+            <if test="contentId != null">
+                content_id = #{contentId,jdbcType=CHAR},
+            </if>
+            <if test="createdat != null">
+                createdAt = #{createdat,jdbcType=CHAR},
+            </if>
+            <if test="desc != null">
+                desc = #{desc,jdbcType=CHAR},
+            </if>
+            <if test="publishedat != null">
+                publishedAt = #{publishedat,jdbcType=CHAR},
+            </if>
+            <if test="source != null">
+                source = #{source,jdbcType=CHAR},
+            </if>
+            <if test="type != null">
+                type = #{type,jdbcType=CHAR},
+            </if>
+            <if test="used != null">
+                used = #{used,jdbcType=CHAR},
+            </if>
+            <if test="who != null">
+                who = #{who,jdbcType=CHAR},
+            </if>
+            <if test="images != null">
+                images = #{images,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="url != null">
+                url = #{url,jdbcType=LONGVARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.ctsig.sys.gank.domain.AllContentBeanWithBLOBs">
+    update t_all_content
+    set content_id = #{contentId,jdbcType=CHAR},
+      createdAt = #{createdat,jdbcType=CHAR},
+      desc = #{desc,jdbcType=CHAR},
+      publishedAt = #{publishedat,jdbcType=CHAR},
+      source = #{source,jdbcType=CHAR},
+      type = #{type,jdbcType=CHAR},
+      used = #{used,jdbcType=CHAR},
+      who = #{who,jdbcType=CHAR},
+      images = #{images,jdbcType=LONGVARCHAR},
+      url = #{url,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+    <update id="updateByPrimaryKey" parameterType="com.ctsig.sys.gank.domain.AllContentBean">
+    update t_all_content
+    set content_id = #{contentId,jdbcType=CHAR},
+      createdAt = #{createdat,jdbcType=CHAR},
+      desc = #{desc,jdbcType=CHAR},
+      publishedAt = #{publishedat,jdbcType=CHAR},
+      source = #{source,jdbcType=CHAR},
+      type = #{type,jdbcType=CHAR},
+      used = #{used,jdbcType=CHAR},
+      who = #{who,jdbcType=CHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+
+    <select id="selectByGankId" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        ,
+        <include refid="Blob_Column_List"/>
+        from t_all_content
+        where t_content_id = #{tContentId,jdbcType=CHAR}
+    </select>
+
+
+    <update id="updateByGankIdWithBLOBs" parameterType="com.ctsig.sys.gank.domain.AllContentBeanWithBLOBs">
+     update t_all_content
+    set t_content_id = #{tContentId,jdbcType=CHAR},
+    t_createdAt = #{tCreatedat,jdbcType=CHAR},
+    t_desc = #{tDesc,jdbcType=CHAR},
+    t_publishedAt = #{tPublishedat,jdbcType=CHAR},
+    t_source = #{tSource,jdbcType=CHAR},
+    t_type = #{tType,jdbcType=CHAR},
+    t_used = #{tUsed,jdbcType=CHAR},
+    t_who = #{tWho,jdbcType=CHAR},
+    t_images = #{tImages,jdbcType=LONGVARCHAR},
+    t_url = #{tUrl,jdbcType=LONGVARCHAR}
+    where t_content_id = #{tContentId,jdbcType=CHAR}
+  </update>
+
+    <select id="selectByType" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        ,
+        <include refid="Blob_Column_List"/>
+        from t_all_content
+        where t_type = #{tType,jdbcType=CHAR}
+    </select>
+
+
+</mapper>

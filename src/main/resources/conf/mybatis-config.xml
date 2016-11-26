@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+    PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-config.dtd">
+    
+<configuration>
+	<typeAliases>
+		<typeAlias alias="userRole" type="com.ctsig.sys.userRole.domain.UserRole" />
+		<typeAlias alias="sysUser" type="com.ctsig.sys.user.domain.SysUser" />
+		<typeAlias alias="rolePrivilege" type="com.ctsig.sys.rolePrivilege.domain.RolePrivilege" />
+		<typeAlias alias="role" type="com.ctsig.sys.role.domain.Role" />
+		<typeAlias alias="privilege" type="com.ctsig.sys.privilege.domain.Privilege" />
+		<typeAlias alias="userRoleVo" type="com.ctsig.sys.userRole.controller.vo.UserRoleVo" />
+		<typeAlias alias="rolePrivilegeVo" type="com.ctsig.sys.rolePrivilege.controller.vo.RolePrivilegeVo" />
+		<typeAlias alias="roleVo" type="com.ctsig.sys.role.controller.vo.RoleVo" />
+		<typeAlias alias="privilegeVo" type="com.ctsig.sys.privilege.controller.vo.PrivilegeVo" />
+	</typeAliases>
+	<!-- 分页插件-->
+	<plugins>
+		<plugin interceptor="com.ctsig.common.page.PaginationSupportHandlerInterceptor">
+			<property name="pageSqlId" value=".*PageList.*" />
+		</plugin>
+	</plugins>
+	
+</configuration>
