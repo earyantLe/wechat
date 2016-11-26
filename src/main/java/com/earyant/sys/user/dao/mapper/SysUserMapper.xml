@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.earyant.sys.user.dao.SysUserMapper" >
+  <resultMap id="BaseResultMap" type="com.earyant.sys.user.domain.SysUser" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="loginname" property="loginname" jdbcType="VARCHAR" />
+    <result column="loginpwd" property="loginpwd" jdbcType="VARCHAR" />
+    <result column="username" property="username" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="CHAR" />
+    <result column="isAdmin" property="isadmin" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, loginname, loginpwd, username, sex, isAdmin
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectByUserCondition" resultMap="BaseResultMap" parameterType="com.earyant.sys.user.domain.SysUser" >
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where 1=1
+    <if test="loginname!=null and loginname!=''">
+    	and loginname like '${loginname}%'
+    </if>
+    <if test="username!=null and username!=''">
+    	and username like '${username}%'
+    </if>
+    <if test="sex!=null and sex!='' and sex!=2">
+    	and sex=#{sex,jdbcType=CHAR}
+    </if>
+    <if test="isadmin!=null and isadmin!='' and isadmin!=2">
+    	and isAdmin=#{isadmin,jdbcType=CHAR}
+    </if>
+  </select>
+  <select id="selectUserBynameANDpwd" resultMap="BaseResultMap" parameterType="com.earyant.sys.user.domain.SysUser" >
+    select 
+    <include refid="Base_Column_List" />
+    from user where 1=1
+    <if test="loginname!=null and loginname!=''">
+    	 and loginname=#{loginname,jdbcType=VARCHAR}
+    </if>
+     <if test="loginpwd!=null and loginpwd!=''">
+    	 and loginpwd=#{loginpwd,jdbcType=VARCHAR}
+    </if>
+    
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from user
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.earyant.sys.user.domain.SysUser" >
+    insert into user (id, loginname, loginpwd, 
+      username, sex, isAdmin)
+    values (#{id,jdbcType=INTEGER}, #{loginname,jdbcType=VARCHAR}, #{loginpwd,jdbcType=VARCHAR}, 
+      #{username,jdbcType=VARCHAR}, #{sex,jdbcType=CHAR}, #{isadmin,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.earyant.sys.user.domain.SysUser" >
+    insert into user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="loginname != null" >
+        loginname,
+      </if>
+      <if test="loginpwd != null" >
+        loginpwd,
+      </if>
+      <if test="username != null" >
+        username,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="isadmin != null" >
+        isAdmin,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="loginname != null" >
+        #{loginname,jdbcType=VARCHAR},
+      </if>
+      <if test="loginpwd != null" >
+        #{loginpwd,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=CHAR},
+      </if>
+      <if test="isadmin != null" >
+        #{isadmin,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.earyant.sys.user.domain.SysUser" >
+    update user
+    <set >
+      <if test="loginname != null" >
+        loginname = #{loginname,jdbcType=VARCHAR},
+      </if>
+      <if test="loginpwd != null" >
+        loginpwd = #{loginpwd,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null" >
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        sex = #{sex,jdbcType=CHAR},
+      </if>
+      <if test="isadmin != null" >
+        isAdmin = #{isadmin,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.earyant.sys.user.domain.SysUser" >
+    update user
+    set loginname = #{loginname,jdbcType=VARCHAR},
+      loginpwd = #{loginpwd,jdbcType=VARCHAR},
+      username = #{username,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=CHAR},
+      isAdmin = #{isadmin,jdbcType=CHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

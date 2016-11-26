@@ -1,6 +1,6 @@
 package com.earyant.web.start;
 
-import com.ctsig.sys.wechat.service.impl.InterfaceUrlInti;
+import com.earyant.sys.wechat.service.impl.InterfaceUrlInti;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;

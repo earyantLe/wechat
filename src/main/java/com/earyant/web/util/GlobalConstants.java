@@ -1,8 +1,8 @@
 package com.earyant.web.util;
 
-import com.ctsig.sys.token.dao.TokenMapper;
-import com.ctsig.sys.token.domain.Token;
-import com.ctsig.sys.token.service.WechatService;
+import com.earyant.sys.token.dao.TokenMapper;
+import com.earyant.sys.token.domain.Token;
+import com.earyant.sys.token.service.WechatService;
 import org.springframework.stereotype.Controller;
 
 import javax.annotation.Resource;
@@ -13,7 +13,7 @@ public class GlobalConstants {
     @Resource
     private TokenMapper tokenMapper;
     @Resource
-    private static WechatService wechatService;
+    private  WechatService wechatService;
     /**
      * @param @param  key
      * @param @return
@@ -35,7 +35,7 @@ public class GlobalConstants {
         mapping.setId(0);
         mapping.setToken(key);
         System.out.println("access_tokken  :: " + mapping.getToken());
-        wechatService.setToken(key);
+//        wechatService.setToken(key);
     }
 
 }

@@ -16,12 +16,12 @@
          http://www.springframework.org/schema/task
          http://www.springframework.org/schema/task/spring-task-3.0.xsd">
 
-	<context:component-scan base-package="com.ctsig.common.quartz" />
+	<context:component-scan base-package="com.earyant.common.quartz" />
 	<task:annotation-driven scheduler="qbScheduler" mode="proxy"/>  
     <task:scheduler id="qbScheduler" pool-size="10"/>
     <!-- 定时任务 -->
 	<!-- 加入定时任务类 -->
-	<bean id="hand" class="com.ctsig.common.quartz.DemoTask"></bean>
+	<bean id="hand" class="com.earyant.common.quartz.DemoTask"></bean>
 	<!-- 任务调度拦截 -->
 	<bean id="jobHand" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
 	  <property name="targetObject">
@@ -72,6 +72,6 @@
 			<!--<value>setTokens</value>&lt;!&ndash; 指定要执行的类里面的哪个方法 &ndash;&gt;-->
 		<!--</property>-->
 	<!--</bean>-->
-	<!--<bean id="Token" class="com.ctsig.sys.token.service.impl.WechatServiceImpl"></bean>-->
+	<!--<bean id="Token" class="com.earyantnt.sys.token.service.impl.WechatServiceImpl"></bean>-->
 
 </beans>

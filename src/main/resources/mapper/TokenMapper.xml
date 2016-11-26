@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.ctsig.sys.token.dao.TokenMapper">
-    <resultMap id="BaseResultMap" type="com.ctsig.sys.token.domain.Token">
+<mapper namespace="com.earyant.sys.token.dao.TokenMapper">
+    <resultMap id="BaseResultMap" type="com.earyant.sys.token.domain.Token">
         <id column="id" property="id" jdbcType="INTEGER"/>
         <result column="token" property="token" jdbcType="CHAR"/>
     </resultMap>
@@ -18,11 +18,11 @@
     delete from token
     where id = #{id,jdbcType=INTEGER}
   </delete>
-    <insert id="insert" parameterType="com.ctsig.sys.token.domain.Token">
+    <insert id="insert" parameterType="com.earyant.sys.token.domain.Token">
     insert into token (id, token)
     values (#{id,jdbcType=INTEGER}, #{token,jdbcType=CHAR})
   </insert>
-    <insert id="insertSelective" parameterType="com.ctsig.sys.token.domain.Token">
+    <insert id="insertSelective" parameterType="com.earyant.sys.token.domain.Token">
         insert into token
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">
@@ -41,7 +41,7 @@
             </if>
         </trim>
     </insert>
-    <update id="updateByPrimaryKeySelective" parameterType="com.ctsig.sys.token.domain.Token">
+    <update id="updateByPrimaryKeySelective" parameterType="com.earyant.sys.token.domain.Token">
         update token
         <set>
             upt_time = now()
@@ -51,7 +51,7 @@
         </set>
         where id = #{id,jdbcType=INTEGER}
     </update>
-    <update id="updateByPrimaryKey" parameterType="com.ctsig.sys.token.domain.Token">
+    <update id="updateByPrimaryKey" parameterType="com.earyant.sys.token.domain.Token">
     update token
     set token = #{token,jdbcType=CHAR}
     where id = #{id,jdbcType=INTEGER}

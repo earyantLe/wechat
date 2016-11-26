@@ -16,7 +16,7 @@
     <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">  
         <!-- 日期格式转换 -->  
         <property name="webBindingInitializer">  
-            <bean class="com.ctsig.common.convrter.DateConverter" />  
+            <bean class="com.earyant.common.convrter.DateConverter" />
         </property>  
         <property name="messageConverters">    
             <list>    
@@ -28,7 +28,7 @@
 	<context:annotation-config />
 
 	<!-- Activates scanning of @Repository and @Service -->
-	<context:component-scan base-package="com.ctsig" />
+	<context:component-scan base-package="com.earyant" />
 	<bean class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter" /> 
 	<!-- 设置使用注解的类所在的jar包 -->
 	<!-- <bean id="handlerMapping"

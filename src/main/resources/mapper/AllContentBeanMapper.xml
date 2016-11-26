@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ctsig.sys.gank.dao.AllContentBeanMapper">
-    <resultMap id="BaseResultMap" type="com.ctsig.sys.gank.domain.AllContentBean">
+<mapper namespace="com.earyant.sys.gank.dao.AllContentBeanMapper">
+    <resultMap id="BaseResultMap" type="com.earyant.sys.gank.domain.AllContentBean">
         <id column="t_id" jdbcType="INTEGER" property="tId"/>
         <result column="t_content_id" jdbcType="CHAR" property="tContentId"/>
         <result column="t_createdAt" jdbcType="CHAR" property="tCreatedat"/>
@@ -12,7 +12,7 @@
         <result column="t_used" jdbcType="CHAR" property="tUsed"/>
         <result column="t_who" jdbcType="CHAR" property="tWho"/>
     </resultMap>
-    <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.ctsig.sys.gank.domain.AllContentBeanWithBLOBs">
+    <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.earyant.sys.gank.domain.AllContentBeanWithBLOBs">
         <result column="t_images" jdbcType="LONGVARCHAR" property="tImages"/>
         <result column="t_url" jdbcType="LONGVARCHAR" property="tUrl"/>
     </resultMap>
@@ -35,7 +35,7 @@
     delete from t_all_content
     where t_id = #{tId,jdbcType=INTEGER}
   </delete>
-    <insert id="insert" parameterType="com.ctsig.sys.gank.domain.AllContentBeanWithBLOBs">
+    <insert id="insert" parameterType="com.earyant.sys.gank.domain.AllContentBeanWithBLOBs">
     insert ignore into t_all_content (t_id, t_content_id, t_createdAt,
     t_desc, t_publishedAt, t_source,
     t_type, t_used, t_who, t_images,
@@ -45,7 +45,7 @@
     #{tType,jdbcType=CHAR}, #{tUsed,jdbcType=CHAR}, #{tWho,jdbcType=CHAR}, #{tImages,jdbcType=LONGVARCHAR},
     #{tUrl,jdbcType=LONGVARCHAR})
   </insert>
-    <insert id="insertSelective" parameterType="com.ctsig.sys.gank.domain.AllContentBeanWithBLOBs">
+    <insert id="insertSelective" parameterType="com.earyant.sys.gank.domain.AllContentBeanWithBLOBs">
         insert into t_all_content
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="tId != null">
@@ -118,7 +118,7 @@
             </if>
         </trim>
     </insert>
-    <update id="updateByPrimaryKeySelective" parameterType="com.ctsig.sys.gank.domain.AllContentBeanWithBLOBs">
+    <update id="updateByPrimaryKeySelective" parameterType="com.earyant.sys.gank.domain.AllContentBeanWithBLOBs">
         update t_all_content
         <set>
             <if test="tContentId != null">
@@ -154,7 +154,7 @@
         </set>
         where t_id = #{tId,jdbcType=INTEGER}
     </update>
-    <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.ctsig.sys.gank.domain.AllContentBeanWithBLOBs">
+    <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.earyant.sys.gank.domain.AllContentBeanWithBLOBs">
     update t_all_content
     set t_content_id = #{tContentId,jdbcType=CHAR},
     t_createdAt = #{tCreatedat,jdbcType=CHAR},
@@ -168,7 +168,7 @@
     t_url = #{tUrl,jdbcType=LONGVARCHAR}
     where t_id = #{tId,jdbcType=INTEGER}
   </update>
-    <update id="updateByPrimaryKey" parameterType="com.ctsig.sys.gank.domain.AllContentBean">
+    <update id="updateByPrimaryKey" parameterType="com.earyant.sys.gank.domain.AllContentBean">
     update t_all_content
     set t_content_id = #{tContentId,jdbcType=CHAR},
     t_createdAt = #{tCreatedat,jdbcType=CHAR},
@@ -191,7 +191,7 @@
     </select>
 
 
-    <update id="updateByGankIdWithBLOBs" parameterType="com.ctsig.sys.gank.domain.AllContentBeanWithBLOBs">
+    <update id="updateByGankIdWithBLOBs" parameterType="com.earyant.sys.gank.domain.AllContentBeanWithBLOBs">
     update t_all_content
     set t_content_id = #{tContentId,jdbcType=CHAR},
     t_createdAt = #{tCreatedat,jdbcType=CHAR},

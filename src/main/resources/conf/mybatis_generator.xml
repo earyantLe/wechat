@@ -20,15 +20,15 @@
       <property name="forceBigDecimals" value="false" />
     </javaTypeResolver>
 	
-    <javaModelGenerator targetPackage="com.ctsig.sys.user.domain" targetProject="spring-mybatis">
+    <javaModelGenerator targetPackage="com.earyant.sys.user.domain" targetProject="spring-mybatis">
       <property name="enableSubPackages" value="true" />
     </javaModelGenerator>
 
-    <sqlMapGenerator targetPackage="com.ctsig.sys.user.dao.mapper"  targetProject="spring-mybatis">
+    <sqlMapGenerator targetPackage="com.earyant.sys.user.dao.mapper" targetProject="spring-mybatis">
       <property name="enableSubPackages" value="true" />
     </sqlMapGenerator>
     
-    <javaClientGenerator type="XMLMAPPER" targetPackage="com.ctsig.sys.user.dao"  targetProject="spring-mybatis">
+    <javaClientGenerator type="XMLMAPPER" targetPackage="com.earyant.sys.user.dao" targetProject="spring-mybatis">
       <property name="enableSubPackages" value="true" />
     </javaClientGenerator>
     

@@ -18,7 +18,7 @@
     <!-- 加载redis配置文件 -->
     <context:property-placeholder ignore-unresolvable="true" location="classpath*:conf/redis.properties" />
     <!-- redis连接池的配置 -->
-    <bean id="jedisClient" class="com.ctsig.common.redis.JedisClient"/>
+    <bean id="jedisClient" class="com.earyant.common.redis.JedisClient"/>
     <bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
       <property name="maxTotal" value="${redis.pool.maxTotal}"/>
       <property name="maxIdle" value="${redis.pool.maxIdle}"/>

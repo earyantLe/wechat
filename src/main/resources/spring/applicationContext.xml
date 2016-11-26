@@ -17,7 +17,7 @@
 	<context:annotation-config />
 
 	<!-- Activates scanning of @Repository and @Service -->
-	<context:component-scan base-package="com.ctsig" />
+	<context:component-scan base-package="com.earyant" />
 	
 	<!-- 读取配置文件 -->
 	<bean id="propertyConfigurer"
@@ -97,7 +97,7 @@
 		<property name="configLocation" value="classpath:conf/mybatis-config.xml" />
 		<property name="mapperLocations">
             <list>
-                <value>classpath:com/ctsig/**/*.xml</value>
+                <value>classpath:com/earyant/**/*.xml</value>
 				<value>classpath*:/mapper/*.xml</value>
             </list>
         </property>
@@ -105,7 +105,7 @@
 	
 	<!-- 通过扫描的模式,自动注入bean -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.ctsig.sys.**.dao" />
+        <property name="basePackage" value="com.earyant.sys.**.dao" />
     </bean>
 	<!--创建事务管理平台-->
 	<bean id="transactionManager"
@@ -120,10 +120,10 @@
 		</tx:attributes>
 	</tx:advice>
 	<aop:config>
-        <aop:advisor advice-ref="transactionAdvice" pointcut="execution(public * com.ctsig.*.service.*Service.*(..))" />
-        <aop:advisor advice-ref="transactionAdvice" pointcut="execution(public * com.ctsig.*.*.service.*Service.*(..))" />
-        <aop:advisor advice-ref="transactionAdvice" pointcut="execution(public * com.ctsig.*.*.*.service.*Service.*(..))" />
-        <aop:advisor advice-ref="transactionAdvice" pointcut="execution(public * com.ctsig.*.*.*.*.service.*Service.*(..))" />
+        <aop:advisor advice-ref="transactionAdvice" pointcut="execution(public * com.earyant.*.service.*Service.*(..))" />
+        <aop:advisor advice-ref="transactionAdvice" pointcut="execution(public * com.earyant.*.*.service.*Service.*(..))" />
+        <aop:advisor advice-ref="transactionAdvice" pointcut="execution(public * com.earyant.*.*.*.service.*Service.*(..))" />
+        <aop:advisor advice-ref="transactionAdvice" pointcut="execution(public * com.earyant.*.*.*.*.service.*Service.*(..))" />
     </aop:config>
 	<aop:aspectj-autoproxy proxy-target-class="true"/>
 	<!-- 加载bean管理 -->

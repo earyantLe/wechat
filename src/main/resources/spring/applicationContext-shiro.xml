@@ -21,12 +21,12 @@
 	<context:annotation-config />
 
 	<!-- Activates scanning of @Repository and @Service -->
-	<context:component-scan base-package="com.ctsig" />
+	<context:component-scan base-package="com.earyant" />
 
     <!-- 加载配置属性文件 -->
 	<context:property-placeholder ignore-unresolvable="true" location="classpath*:conf/application.properties" />
 	<aop:aspectj-autoproxy proxy-target-class="true"/>
-<!-- 	<bean id="formAuthenticationFilter" class="com.ctsig.common.security.FormAuthenticationFilter"/> -->
+<!-- 	<bean id="formAuthenticationFilter" class="com.earyantnt.common.security.FormAuthenticationFilter"/> -->
 	<!-- Shiro主过滤器本身功能十分强大,其强大之处就在于它支持任何基于URL路径表达式的、自定义的过滤器的执行 -->  
 	<!-- Web应用中,Shiro可控制的Web请求必须经过Shiro主过滤器的拦截,Shiro对基于Spring的Web应用提供了完美的支持 -->  
 	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
@@ -76,7 +76,7 @@
 	</bean>
 	
 	<!-- 继承自AuthorizingRealm的自定义Realm,即指定Shiro验证用户登录的类为自定义的SystemAuthorizingRealm.java -->  
-	<bean id="myRealm" class="com.ctsig.common.security.SystemAuthorizingRealm" >
+	<bean id="myRealm" class="com.earyant.common.security.SystemAuthorizingRealm" >
 	 	<property name="authorizationCacheName" value="shiro"/>
 	</bean>
 <!-- 	<bean id="sessionManager" class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager" >       -->

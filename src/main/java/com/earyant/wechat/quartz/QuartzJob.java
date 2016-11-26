@@ -1,6 +1,6 @@
 package com.earyant.wechat.quartz;
 
-import com.ctsig.sys.wechat.service.WeChatTaskService;
+import com.earyant.sys.wechat.service.WeChatTaskService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
