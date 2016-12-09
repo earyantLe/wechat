@@ -43,9 +43,9 @@ public class WechatServiceImpl implements WechatService {
         tokn.setToken(tokens);
         logger.error(tokens);
         int num = tokenMapper.updateByPrimaryKey(tokn);
-        logger.error(num + "");
-        Token t = tokenMapper.selectByPrimaryKey(0);
-        logger.info("id:::" + t.getId() + "   token    " + t.getToken());
+//        logger.error(num + "");
+//        Token t = tokenMapper.selectByPrimaryKey(0);
+//        logger.info("id:::" + t.getId() + "   token    " + t.getToken());
     }
 
 }
