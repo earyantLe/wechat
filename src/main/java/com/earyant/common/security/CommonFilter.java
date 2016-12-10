@@ -18,19 +18,19 @@ import java.io.IOException;
 
 public class CommonFilter extends OncePerRequestFilter {
 
-	public Log log = LogFactory.getLog(getClass());
-	
-	public void init() throws ServletException {
-		ServletContext servletContext = this.getServletContext();
-		WebApplicationContext wac = null;
-		wac = WebApplicationContextUtils.getRequiredWebApplicationContext(servletContext);
-	}
-	
-	public void doFilterInternal(HttpServletRequest request,
-			HttpServletResponse response, FilterChain chain)
-			throws IOException, ServletException {
-		HttpSession session = request.getSession();
-		/*Cookie ssologin = CommonUtils.getCookieByName(request, "ssologin");
+    public Log log = LogFactory.getLog(getClass());
+
+    public void init() throws ServletException {
+        ServletContext servletContext = this.getServletContext();
+        WebApplicationContext wac = null;
+        wac = WebApplicationContextUtils.getRequiredWebApplicationContext(servletContext);
+    }
+
+    public void doFilterInternal(HttpServletRequest request,
+                                 HttpServletResponse response, FilterChain chain)
+            throws IOException, ServletException {
+        HttpSession session = request.getSession();
+        /*Cookie ssologin = CommonUtils.getCookieByName(request, "ssologin");
 		//获取访问者ip
 		String ip = CommonUtils.getIpAddr(request);
 		//密钥
@@ -64,12 +64,12 @@ public class CommonFilter extends OncePerRequestFilter {
 					session.setAttribute("CustFlag",clc.getCustFlag());
 				}
 			}
-		}*/		
-		/** 个性化过滤器 *******/
-		String requestUri = request.getRequestURI();
-		requestUri = requestUri.substring(CommonConstants.APP_NAME.length() + 2);
-		request.setCharacterEncoding("utf-8");
-		//存在这些词，不拦截
+		}*/
+        /** 个性化过滤器 *******/
+        String requestUri = request.getRequestURI();
+        requestUri = requestUri.substring(CommonConstants.APP_NAME.length() + 2);
+        request.setCharacterEncoding("utf-8");
+        //存在这些词，不拦截
 	/*	if (requestUri.indexOf("common") >= 0 || requestUri.indexOf("jsp") >= 0
 				|| requestUri.indexOf("Login") >= 0
 				|| requestUri.indexOf("oper") >= 0
@@ -78,16 +78,16 @@ public class CommonFilter extends OncePerRequestFilter {
 				|| requestUri.length() <=1) {
 			chain.doFilter(request, response);
 		}*/
-		if(requestUri.indexOf("common")<0 
-        		&& requestUri.indexOf("jsp")<0
-        		&& requestUri.indexOf("Login")<0
-        		&& requestUri.indexOf("oper")<0
-        		&& requestUri.indexOf("index")<0
-        		&& requestUri.indexOf("services")<0
-        		&& requestUri.length()>0){
-        	//response.sendRedirect(request.getContextPath()+"/login.action");
-        }else{
-        	chain.doFilter(request, response);
+        if (requestUri.indexOf("common") < 0
+                && requestUri.indexOf("jsp") < 0
+                && requestUri.indexOf("Login") < 0
+                && requestUri.indexOf("oper") < 0
+                && requestUri.indexOf("index") < 0
+                && requestUri.indexOf("services") < 0
+                && requestUri.length() > 0) {
+            //response.sendRedirect(request.getContextPath()+"/login.action");
+        } else {
+            chain.doFilter(request, response);
         }
-	}
+    }
 }

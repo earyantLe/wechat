@@ -1,20 +1,13 @@
 package com.earyant.wechat.util;
 
-import java.io.BufferedReader;
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
+import com.earyant.web.util.GlobalConstants;
+
+import javax.activation.MimetypesFileTypeMap;
+import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Iterator;
 import java.util.Map;
-
-import javax.activation.MimetypesFileTypeMap;
-
-import com.earyant.web.util.GlobalConstants;
 
 /**
  * ClassName: HttpPostUploadUtil

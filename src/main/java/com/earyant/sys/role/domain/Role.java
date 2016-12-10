@@ -1,8 +1,9 @@
 package com.earyant.sys.role.domain;
+
 /**
  * 角色实体类
- * @author zhiwei
  *
+ * @author zhiwei
  */
 public class Role {
     private Integer id; //角色ID

@@ -4,6 +4,24 @@ public class Token {
     private Integer id;
 
     private String token;
+    private String appid;
+    private String appSecret;
+
+    public String getAppSecret() {
+        return appSecret;
+    }
+
+    public void setAppSecret(String appSecret) {
+        this.appSecret = appSecret;
+    }
+
+    public String getAppid() {
+        return appid;
+    }
+
+    public void setAppid(String appid) {
+        this.appid = appid;
+    }
 
     public Integer getId() {
         return id;

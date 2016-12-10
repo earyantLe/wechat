@@ -25,6 +25,7 @@ public class WechatSecurity {
     private EventDisPatcherService eventDisPatcherService;
     @Resource
     private MsgDisPatcherService msgDisPatcherService;
+
     /**
      * @param @param request
      * @param @param response

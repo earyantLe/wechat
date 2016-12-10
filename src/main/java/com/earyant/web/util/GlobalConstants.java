@@ -7,13 +7,15 @@ import org.springframework.stereotype.Controller;
 
 import javax.annotation.Resource;
 import java.util.Properties;
+
 @Controller
 public class GlobalConstants {
     public static Properties interfaceUrlProperties;
     @Resource
     private TokenMapper tokenMapper;
     @Resource
-    private  WechatService wechatService;
+    private WechatService wechatService;
+
     /**
      * @param @param  key
      * @param @return
@@ -24,7 +26,7 @@ public class GlobalConstants {
         return (String) interfaceUrlProperties.get(key);
     }
 
-    public  String getToken(String key) {
+    public String getToken(String key) {
 //        TokenMapping tokenMapping = tokenMappingMapper.selectByPrimaryKey(0);
         return tokenMapper.selectByPrimaryKey(0).getToken();
 //        return "";

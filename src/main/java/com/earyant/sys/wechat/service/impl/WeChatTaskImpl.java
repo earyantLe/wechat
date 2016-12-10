@@ -2,6 +2,8 @@ package com.earyant.sys.wechat.service.impl;
 
 import com.earyant.sys.gank.dao.DayMapper;
 import com.earyant.sys.gank.dao.GankContentMapper;
+import com.earyant.sys.token.dao.TokenMapper;
+import com.earyant.sys.token.domain.Token;
 import com.earyant.sys.token.service.WechatService;
 import com.earyant.sys.wechat.service.GankService;
 import com.earyant.sys.wechat.service.WeChatTaskService;
@@ -14,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -34,6 +37,8 @@ public class WeChatTaskImpl implements WeChatTaskService {
     GankService gankService;
     @Resource
     WechatService wechatService;
+    @Resource
+    TokenMapper tokenMapper;
 
     /**
      * @param @throws Exception
@@ -44,32 +49,51 @@ public class WeChatTaskImpl implements WeChatTaskService {
 
     @Override
     public void getToken_getTicket() throws Exception {
-        Map<String, String> params = new HashMap<String, String>();
-        //获取token执行体
-        params.put("grant_type", "client_credential");
-        params.put("appid", GlobalConstants.getInterfaceUrl("appid"));
-        params.put("secret", GlobalConstants.getInterfaceUrl("AppSecret"));
-        String jstoken = HttpUtils.sendGet(
-                GlobalConstants.getInterfaceUrl("tokenUrl"), params);
-        String access_token = JSONObject.fromObject(jstoken).getString(
-                "access_token"); // 获取到token并赋值保存
-        GlobalConstants.interfaceUrlProperties.put("access_token", access_token);
-        //获取jsticket的执行体
-        params.clear();
-        params.put("access_token", access_token);
-        params.put("type", "jsapi");
-        String jsticket = HttpUtils.sendGet(
-                GlobalConstants.getInterfaceUrl("ticketUrl"), params);
-        String jsapi_ticket = JSONObject.fromObject(jsticket).getString(
-                "ticket");
-        GlobalConstants.interfaceUrlProperties
-                .put("jsapi_ticket", jsapi_ticket); // 获取到js-SDK的ticket并赋值保存
-        String sql = "";
+
+        List<Token> tokens = tokenMapper.selectAll();
+        tokens.forEach((Token o) -> {
+            Map<String, String> params = new HashMap<String, String>();
+            //获取token执行体
+            params.put("grant_type", "client_credential");
+            params.put("appid", o.getAppid());
+//            params.put("appid", GlobalConstants.getInterfaceUrl("appid"));
+            params.put("secret", o.getAppSecret());
+//            params.put("secret", GlobalConstants.getInterfaceUrl("AppSecret"));
+            String jstoken = null;
+            try {
+                jstoken = HttpUtils.sendGet(
+                        GlobalConstants.getInterfaceUrl("tokenUrl"), params);
+            } catch (Exception e) {
+                logger.info("获取token失败，原因是：" + e.toString());
+            }
+            String access_token = JSONObject.fromObject(jstoken).getString(
+                    "access_token"); // 获取到token并赋值保存
+            GlobalConstants.interfaceUrlProperties.put("access_token", access_token);
+            //获取jsticket的执行体
+            params.clear();
+            params.put("access_token", access_token);
+            params.put("type", "jsapi");
+            String jsticket = null;
+            try {
+                jsticket = HttpUtils.sendGet(
+                        GlobalConstants.getInterfaceUrl("ticketUrl"), params);
+            } catch (Exception e) {
+                logger.info("获取ticket失败，失败原因是：" + e.toString());
+            }
+            String jsapi_ticket = JSONObject.fromObject(jsticket).getString(
+                    "ticket");
+            GlobalConstants.interfaceUrlProperties
+                    .put("jsapi_ticket", jsapi_ticket); // 获取到js-SDK的ticket并赋值保存
+            String sql = "";
 //				这里保存token信息
-//		System.out.println("jsapi_ticket================================================" + jsapi_ticket);
-//      System.out.println(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()) + "token为==============================" + access_token);
-        wechatService.setTokens(access_token);
-        //每个小时更新一下天数和
+            try {
+                o.setToken(access_token);
+                wechatService.setTokens(o);
+            } catch (Exception e) {
+                logger.info("保存token到数据库失败，失败原因是：" + e.toString());
+            }
+            //每个小时更新一下天数和
 //        gankService.getDayAndContent();
+        });
     }
 }

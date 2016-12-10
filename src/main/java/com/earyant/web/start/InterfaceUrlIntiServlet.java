@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServlet;
  */
 public class InterfaceUrlIntiServlet extends HttpServlet {
 
-//    @Resource
+    //    @Resource
 //    InterfaceUrlInti interfaceUrlIntiService;
     private static final long serialVersionUID = 1L;
 

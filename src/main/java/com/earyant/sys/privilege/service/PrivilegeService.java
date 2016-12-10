@@ -1,14 +1,14 @@
 package com.earyant.sys.privilege.service;
 
 
-import java.util.List;
-
 import com.earyant.sys.privilege.domain.Privilege;
 
+import java.util.List;
+
 public interface PrivilegeService {
-	int deleteByPrimaryKey(String id);
-	
-	int deleteByIdANDByPid(String id);
+    int deleteByPrimaryKey(String id);
+
+    int deleteByIdANDByPid(String id);
 
     int insert(Privilege record);
 
@@ -19,7 +19,8 @@ public interface PrivilegeService {
     int updateByPrimaryKeySelective(Privilege record);
 
     int updateByPrimaryKey(Privilege record);
-    
+
     List<Privilege> selectByPid(String id);
+
     List<Privilege> selectAllPrivilege();
 }

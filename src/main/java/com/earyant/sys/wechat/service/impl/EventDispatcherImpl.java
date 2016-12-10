@@ -202,7 +202,7 @@ public class EventDispatcherImpl implements EventDisPatcherService {
         //对图文消息
         newmsg.setCreateTime(new Date().getTime());
         newmsg.setMsgType(MessageUtil.RESP_MESSAGE_TYPE_NEWS);
-        List<AllContentBeanWithBLOBs> allContentBeanWithBLOBs = allContentBeanMapper.selectByDate(date+"%");
+        List<AllContentBeanWithBLOBs> allContentBeanWithBLOBs = allContentBeanMapper.selectByDate(date + "%");
         List<Article> list = new ArrayList<Article>();
         if (allContentBeanWithBLOBs.size() > 0) {
 //            logger.debug("数据库中Android消息的个数" + allContentBeanWithBLOBs.size());
@@ -210,22 +210,22 @@ public class EventDispatcherImpl implements EventDisPatcherService {
                 AllContentBeanWithBLOBs allContentBeanWithBLOB = allContentBeanWithBLOBs.get(i);
                 Article article = new Article();
                 article.setDescription(allContentBeanWithBLOB.gettDesc()); //图文消息的描述
-                    if (null != allContentBeanWithBLOB.gettImages() && !"".equals(allContentBeanWithBLOB.gettImages())) {
-                        try {
-                            String[] picUrls = allContentBeanWithBLOB.gettImages().substring(1, allContentBeanWithBLOB.gettImages().length() - 1).split(",");
-                            if (picUrls.length > 0) {
-                                article.setPicUrl(picUrls[0]); //图文消息图片地址
-                            } else {
-                                article.setPicUrl("http://ww2.sinaimg.cn/large/610dc034jw1f9vyl2fqi0j20u011habc.jpg");
-                            }
-                        } catch (Exception e) {
-                            e.printStackTrace();
+                if (null != allContentBeanWithBLOB.gettImages() && !"".equals(allContentBeanWithBLOB.gettImages())) {
+                    try {
+                        String[] picUrls = allContentBeanWithBLOB.gettImages().substring(1, allContentBeanWithBLOB.gettImages().length() - 1).split(",");
+                        if (picUrls.length > 0) {
+                            article.setPicUrl(picUrls[0]); //图文消息图片地址
+                        } else {
                             article.setPicUrl("http://ww2.sinaimg.cn/large/610dc034jw1f9vyl2fqi0j20u011habc.jpg");
-                        } finally {
                         }
-                    } else {
+                    } catch (Exception e) {
+                        e.printStackTrace();
                         article.setPicUrl("http://ww2.sinaimg.cn/large/610dc034jw1f9vyl2fqi0j20u011habc.jpg");
+                    } finally {
                     }
+                } else {
+                    article.setPicUrl("http://ww2.sinaimg.cn/large/610dc034jw1f9vyl2fqi0j20u011habc.jpg");
+                }
                 article.setTitle(allContentBeanWithBLOB.gettDesc());  //图文消息标题
                 article.setUrl(allContentBeanWithBLOB.gettUrl());  //图文url链接
                 list.add(article);     //这里发送的是单图文，如果需要发送多图文则在这里list中加入多个Article即可！

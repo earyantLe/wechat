@@ -8,12 +8,13 @@ import java.util.List;
  * Created by lirui on 2016/11/3.
  */
 public class GetPic {
-    private List<Pic> articles ;
+    private List<Pic> articles;
 
-    public void setArticles(List<Pic> articles){
+    public void setArticles(List<Pic> articles) {
         this.articles = articles;
     }
-    public List<Pic> getArticles(){
+
+    public List<Pic> getArticles() {
         return this.articles;
     }
 }

@@ -1,4 +1,3 @@
-
 package com.earyant.sys.wechat.service;
 
 /**

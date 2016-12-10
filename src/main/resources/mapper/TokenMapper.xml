@@ -6,8 +6,8 @@
         <result column="token" property="token" jdbcType="CHAR"/>
     </resultMap>
     <sql id="Base_Column_List">
-    id, token
-  </sql>
+        id , token, upt_time, appid, app_secret
+    </sql>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
         select
         <include refid="Base_Column_List"/>
@@ -15,13 +15,13 @@
         where id = #{id,jdbcType=INTEGER}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from token
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
+        DELETE FROM token
+        WHERE id = #{id,jdbcType=INTEGER}
+    </delete>
     <insert id="insert" parameterType="com.earyant.sys.token.domain.Token">
-    insert into token (id, token)
-    values (#{id,jdbcType=INTEGER}, #{token,jdbcType=CHAR})
-  </insert>
+        INSERT INTO token (id, token)
+        VALUES (#{id,jdbcType=INTEGER}, #{token,jdbcType=CHAR})
+    </insert>
     <insert id="insertSelective" parameterType="com.earyant.sys.token.domain.Token">
         insert into token
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -44,18 +44,23 @@
     <update id="updateByPrimaryKeySelective" parameterType="com.earyant.sys.token.domain.Token">
         update token
         <set>
-            upt_time = now()
             <if test="token != null">
-                , token = #{token,jdbcType=CHAR},
+                token = #{token,jdbcType=CHAR},
             </if>
         </set>
         where id = #{id,jdbcType=INTEGER}
     </update>
     <update id="updateByPrimaryKey" parameterType="com.earyant.sys.token.domain.Token">
-    update token
-    set token = #{token,jdbcType=CHAR}
-    where id = #{id,jdbcType=INTEGER}
+        UPDATE token
+        SET token = #{token,jdbcType=CHAR}
+        WHERE id = #{id,jdbcType=INTEGER}
 
 
-  </update>
+    </update>
+
+    <select id="selectAll" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from token
+    </select>
 </mapper>

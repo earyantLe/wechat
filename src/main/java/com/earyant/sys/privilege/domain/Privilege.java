@@ -1,7 +1,6 @@
 package com.earyant.sys.privilege.domain;
 
 
-
 public class Privilege {
     private String id;
 
@@ -12,30 +11,27 @@ public class Privilege {
     private String pId;
     private String privilegecode;
 
- 
-	
 
-	public String getpId() {
-		return pId;
-	}
+    public String getpId() {
+        return pId;
+    }
 
-	public void setpId(String pId) {
-		this.pId = pId;
-	}
+    public void setpId(String pId) {
+        this.pId = pId;
+    }
 
-	private String ismenu;//1.是父菜单 ，0是子节点菜单
+    private String ismenu;//1.是父菜单 ，0是子节点菜单
 
-    
 
     public String getId() {
-		return id;
-	}
+        return id;
+    }
 
-	public void setId(String id) {
-		this.id = id;
-	}
+    public void setId(String id) {
+        this.id = id;
+    }
 
-	public String getPrivilegename() {
+    public String getPrivilegename() {
         return privilegename;
     }
 
@@ -52,8 +48,7 @@ public class Privilege {
     }
 
 
-
-	public String getIsmenu() {
+    public String getIsmenu() {
         return ismenu;
     }
 
@@ -61,12 +56,12 @@ public class Privilege {
         this.ismenu = ismenu;
     }
 
-	public String getPrivilegecode() {
-		return privilegecode;
-	}
+    public String getPrivilegecode() {
+        return privilegecode;
+    }
 
-	public void setPrivilegecode(String privilegecode) {
-		this.privilegecode = privilegecode;
-	}
-    
+    public void setPrivilegecode(String privilegecode) {
+        this.privilegecode = privilegecode;
+    }
+
 }

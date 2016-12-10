@@ -1,11 +1,11 @@
 package com.earyant.wechat.common;
 
+import com.earyant.web.util.GlobalConstants;
+
 import java.security.MessageDigest;
 import java.util.Formatter;
 import java.util.HashMap;
 import java.util.UUID;
-
-import com.earyant.web.util.GlobalConstants;
 
 
 /**

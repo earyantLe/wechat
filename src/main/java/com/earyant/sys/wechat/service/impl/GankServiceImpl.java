@@ -78,7 +78,7 @@ public class GankServiceImpl implements GankService {
         Map<String, String> historyDateParam = new HashMap<String, String>();
         String date;
         try {
-            String historyDateContent =   HttpUtils.sendGet(getHistoryDate, historyDateParam);
+            String historyDateContent = HttpUtils.sendGet(getHistoryDate, historyDateParam);
             logger.debug(historyDateContent);
             Gson gson = new Gson();
             Day days = gson.fromJson(historyDateContent, Day.class);
@@ -94,7 +94,7 @@ public class GankServiceImpl implements GankService {
 //                    com.earyant.sys.gank.domain.Day dayIsExist = dayMapper.selectBydate(date);
                     //所有的Day日期保存到数据库中
 //                    if (CommMethod.isEmpty(dayIsExist)) {
-                        dayMapper.insert(da);
+                    dayMapper.insert(da);
 //                    } else {
 //                        da.setId(dayIsExist.getId());
 //                        dayMapper.updateByPrimaryKey(da);

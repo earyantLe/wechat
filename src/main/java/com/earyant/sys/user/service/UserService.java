@@ -1,14 +1,13 @@
 package com.earyant.sys.user.service;
 
 
+import com.earyant.sys.user.domain.SysUser;
 
 import java.util.List;
 
-import com.earyant.sys.user.domain.SysUser;
-
 
 public interface UserService {
-	int deleteByPrimaryKey(Integer id);
+    int deleteByPrimaryKey(Integer id);
 
     int insert(SysUser record);
 
@@ -21,6 +20,7 @@ public interface UserService {
     int updateByPrimaryKey(SysUser record);
 
     List<SysUser> selectByUserCondition(SysUser user);
+
     SysUser selectUserBynameANDpwd(SysUser user);
 
 

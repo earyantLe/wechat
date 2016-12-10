@@ -14,10 +14,10 @@ import org.junit.Test;
 //表示继承了SpringJUnit4ClassRunner类
 //@ContextConfiguration(locations = { "classpath:spring/applicationContext-redis.xml" })
 public class TestRedisClient {
-//	@Autowired
+    //	@Autowired
 //	JedisClient jedisClient;
-	@Test
-	public void test() {
+    @Test
+    public void test() {
 //		String key = "alice_2016461346";
 //		String value = "Hello world!";
 //		jedisClient.set(key,value);
@@ -45,5 +45,5 @@ public class TestRedisClient {
 //		}else{
 //			//throw exception
 //		}
-	}
+    }
 }

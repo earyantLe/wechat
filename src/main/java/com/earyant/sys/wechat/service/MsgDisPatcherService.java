@@ -7,4 +7,4 @@ import java.util.Map;
  */
 public interface MsgDisPatcherService {
     public String processMessage(Map<String, String> map) throws Exception;
-    }
+}

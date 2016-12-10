@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE configuration
-    PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
-    "http://mybatis.org/dtd/mybatis-3-config.dtd">
-    
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
 <configuration>
-	<typeAliases>
-		<typeAlias alias="userRole" type="com.earyant.sys.userRole.domain.UserRole" />
-		<typeAlias alias="sysUser" type="com.earyant.sys.user.domain.SysUser" />
-		<typeAlias alias="rolePrivilege" type="com.earyant.sys.rolePrivilege.domain.RolePrivilege" />
-		<typeAlias alias="role" type="com.earyant.sys.role.domain.Role" />
-		<typeAlias alias="privilege" type="com.earyant.sys.privilege.domain.Privilege" />
-		<typeAlias alias="userRoleVo" type="com.earyant.sys.userRole.controller.vo.UserRoleVo" />
-		<typeAlias alias="rolePrivilegeVo" type="com.earyant.sys.rolePrivilege.controller.vo.RolePrivilegeVo" />
-		<typeAlias alias="roleVo" type="com.earyant.sys.role.controller.vo.RoleVo" />
-		<typeAlias alias="privilegeVo" type="com.earyant.sys.privilege.controller.vo.PrivilegeVo" />
-	</typeAliases>
-	<!-- 分页插件-->
-	<plugins>
-		<plugin interceptor="com.earyant.common.page.PaginationSupportHandlerInterceptor">
-			<property name="pageSqlId" value=".*PageList.*" />
-		</plugin>
-	</plugins>
-	
+    <typeAliases>
+        <typeAlias alias="userRole" type="com.earyant.sys.userRole.domain.UserRole"/>
+        <typeAlias alias="sysUser" type="com.earyant.sys.user.domain.SysUser"/>
+        <typeAlias alias="rolePrivilege" type="com.earyant.sys.rolePrivilege.domain.RolePrivilege"/>
+        <typeAlias alias="role" type="com.earyant.sys.role.domain.Role"/>
+        <typeAlias alias="privilege" type="com.earyant.sys.privilege.domain.Privilege"/>
+        <typeAlias alias="userRoleVo" type="com.earyant.sys.userRole.controller.vo.UserRoleVo"/>
+        <typeAlias alias="rolePrivilegeVo" type="com.earyant.sys.rolePrivilege.controller.vo.RolePrivilegeVo"/>
+        <typeAlias alias="roleVo" type="com.earyant.sys.role.controller.vo.RoleVo"/>
+        <typeAlias alias="privilegeVo" type="com.earyant.sys.privilege.controller.vo.PrivilegeVo"/>
+    </typeAliases>
+    <!-- 分页插件-->
+    <plugins>
+        <plugin interceptor="com.earyant.common.page.PaginationSupportHandlerInterceptor">
+            <property name="pageSqlId" value=".*PageList.*"/>
+        </plugin>
+    </plugins>
+
 </configuration>

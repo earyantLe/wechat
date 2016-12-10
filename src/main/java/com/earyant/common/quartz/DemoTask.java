@@ -6,8 +6,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class DemoTask {
 
-//	@Scheduled(cron = "10 */1 * * * ?")
-	public void execute(){
+    //	@Scheduled(cron = "10 */1 * * * ?")
+    public void execute() {
 //		System.out.println("====================定时返还方法开始执行====================");
 //		Log.info("====================定时返还方法开始执行====================");
 //		String str = accountScheduleService.releaseAccountSchedules(new Date());
@@ -15,10 +15,10 @@ public class DemoTask {
 //		System.out.println("====================定时返还方法完毕执行====================");
 //		Log.info("====================定时返还方法完毕执行====================");
 
-		try {
+        try {
 //		System.out.print("fdasfafsafdafdsafaf");
-		} catch (Exception e) {
+        } catch (Exception e) {
 //            logger.error(e, e);
-		}
-	}
+        }
+    }
 }

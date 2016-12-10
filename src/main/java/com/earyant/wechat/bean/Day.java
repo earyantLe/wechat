@@ -8,7 +8,7 @@ import java.util.List;
 public class Day {
     private boolean error;
 
-//    @JSONField(name = "results")
+    //    @JSONField(name = "results")
     private List<String> results;
 
     public void setError(boolean error) {

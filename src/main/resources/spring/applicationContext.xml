@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-	xmlns:aop="http://www.springframework.org/schema/aop"
-	xmlns:context="http://www.springframework.org/schema/context" 
-	xmlns:tx="http://www.springframework.org/schema/tx"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
       		http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
             http://www.springframework.org/schema/aop 
 			http://www.springframework.org/schema/aop/spring-aop-4.1.xsd
@@ -12,151 +12,157 @@
 			http://www.springframework.org/schema/context/spring-context-4.1.xsd
             http://www.springframework.org/schema/tx 
 			http://www.springframework.org/schema/tx/spring-tx-4.1.xsd">
-	
-	<!-- Activates scanning of @Autowired -->
-	<context:annotation-config />
 
-	<!-- Activates scanning of @Repository and @Service -->
-	<context:component-scan base-package="com.earyant" />
-	
-	<!-- 读取配置文件 -->
-	<bean id="propertyConfigurer"
-		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-		<property name="locations">
-			<list>
-				<value>classpath:conf/jdbc.properties</value>
-			</list>
-		</property>
-	</bean>
-	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="prefix" value="/WEB-INF/"/>
-		<property name="suffix" value=".jsp"/>
-	</bean>
-	<!-- 数据源  -->
-	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
-		<property name="driverClassName" value="${jdbc.driver}"/>
-		<property name="url" value="${jdbc.url}" />
-		<property name="username" value="${jdbc.username}" />
-		<property name="password" value="${jdbc.password}" />
-		<property name="maxActive" value="${maxActive}" />
-		<property name="maxIdle" value="${maxIdle}" />
-		<property name="maxWait" value="${maxWait}" />
-		<property name="defaultAutoCommit" value="${defaultAutoCommit}" />
-		<property name="removeAbandoned" value="${removeAbandoned}" />
-		<property name="removeAbandonedTimeout" value="${removeAbandonedTimeout}" />
-	</bean>
-	<!-- <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
-		init-method="init" destroy-method="close">
-		<property name="driverClassName">
-			<value>${jdbc.driver}</value>
-		</property>
-		<property name="url">
-			<value>${jdbc.url}</value>
-		</property>
-		<property name="username">
-			<value>${jdbc.username}</value>
-		</property>
-		<property name="password">
-			<value>${jdbc.password}</value>
-		</property>
-		连接池最大使用连接数
-		<property name="maxActive">
-			<value>20</value>
-		</property>
-		初始化连接大小
-		<property name="initialSize">
-			<value>1</value>
-		</property>
-		获取连接最大等待时间
-		<property name="maxWait">
-			<value>60000</value>
-		</property>
-		连接池最大空闲
-		<property name="maxIdle">
-			<value>20</value>
-		</property>
-		连接池最小空闲
-		<property name="minIdle">
-			<value>3</value>
-		</property>
-		自动清除无用连接
-		<property name="removeAbandoned">
-			<value>true</value>
-		</property>
-		清除无用连接的等待时间
-		<property name="removeAbandonedTimeout">
-			<value>180</value>
-		</property>
-		连接属性
-		<property name="connectionProperties">
-			<value>clientEncoding=UTF-8</value>
-		</property>
-	</bean> -->
-	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-		<property name="dataSource" ref="dataSource" />
-		<property name="configLocation" value="classpath:conf/mybatis-config.xml" />
-		<property name="mapperLocations">
+    <!-- Activates scanning of @Autowired -->
+    <context:annotation-config/>
+
+    <!-- Activates scanning of @Repository and @Service -->
+    <context:component-scan base-package="com.earyant"/>
+
+    <!-- 读取配置文件 -->
+    <bean id="propertyConfigurer"
+          class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
             <list>
-                <value>classpath:com/earyant/**/*.xml</value>
-				<value>classpath*:/mapper/*.xml</value>
+                <value>classpath:conf/jdbc.properties</value>
             </list>
         </property>
-	</bean>
-	
-	<!-- 通过扫描的模式,自动注入bean -->
-    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.earyant.sys.**.dao" />
     </bean>
-	<!--创建事务管理平台-->
-	<bean id="transactionManager"
-		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-		<property name="dataSource" ref="dataSource" />
-	</bean>
-	<!-- 事务通知 (transaction-manager = "transactionManager" 可略)-->
-	<tx:advice id="transactionAdvice" transaction-manager="transactionManager">
-		<tx:attributes>
-			<tx:method name="get*" read-only="false" rollback-for="Exception" />
-			<tx:method name="*" read-only="false" rollback-for="Exception" />
-		</tx:attributes>
-	</tx:advice>
-	<aop:config>
-        <aop:advisor advice-ref="transactionAdvice" pointcut="execution(public * com.earyant.*.service.*Service.*(..))" />
-        <aop:advisor advice-ref="transactionAdvice" pointcut="execution(public * com.earyant.*.*.service.*Service.*(..))" />
-        <aop:advisor advice-ref="transactionAdvice" pointcut="execution(public * com.earyant.*.*.*.service.*Service.*(..))" />
-        <aop:advisor advice-ref="transactionAdvice" pointcut="execution(public * com.earyant.*.*.*.*.service.*Service.*(..))" />
-    </aop:config>
-	<aop:aspectj-autoproxy proxy-target-class="true"/>
-	<!-- 加载bean管理 -->
-	<!-- <bean class="com.hnatourism.framework.utils.BeanUtils"
-		lazy-init="false">
-	</bean> -->
-	<!-- 全局异常配置 start -->     
-    <!-- 系统错误转发配置[并记录错误日志] -->
-	<bean
-		class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
-		<property name="defaultErrorView" value="500"></property>   <!-- 默认为500，系统错误(error.jsp) -->
-		<property name="defaultStatusCode" value="404"></property>
-		<property name="statusCodes"><!-- 配置多个statusCode -->
-			<props>
-				<prop key="error">500</prop>  <!-- error.jsp -->
-				<prop key="error1">404</prop>    <!-- error1.jsp -->
-			</props>
-		</property>
-		<property name="exceptionMappings">
-			<props>
-				<!-- 这里你可以根据需要定义N多个错误异常转发 -->
-				<prop key="java.sql.SQLException">error/dbError</prop> <!-- 数据库错误(dbError.jsp) -->
-				<prop key="org.springframework.web.bind.ServletRequestBindingException">error/bizError</prop> <!-- 参数绑定错误(如：必须参数没传递)(bizError.jsp) -->
-				<prop key="java.lang.IllegalArgumentException">error/paramError</prop>  <!-- 参数错误(paramError.jsp) -->
-				<prop key="org.springframework.validation.BindException">error/paramTypeError</prop>  <!-- 参数类型有误(paramTypeError.jsp) -->
-				<prop key="java.lang.Exception">error/notDefinedError</prop>  <!-- 其他错误为'未定义错误'(notDefinedError.jsp) -->
-			</props>
-		</property>
-	</bean>
-	<context:property-placeholder location="classpath:conf/config.properties"/>
-	<!-- 自动扫描(自动注入) -->
-	<context:component-scan base-package="com.earyant.web.service"/>
-	<context:component-scan base-package="com.earyant.wechat.*"/>
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+    <!-- 数据源  -->
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <property name="maxActive" value="${maxActive}"/>
+        <property name="maxIdle" value="${maxIdle}"/>
+        <property name="maxWait" value="${maxWait}"/>
+        <property name="defaultAutoCommit" value="${defaultAutoCommit}"/>
+        <property name="removeAbandoned" value="${removeAbandoned}"/>
+        <property name="removeAbandonedTimeout" value="${removeAbandonedTimeout}"/>
+    </bean>
+    <!-- <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
+        init-method="init" destroy-method="close">
+        <property name="driverClassName">
+            <value>${jdbc.driver}</value>
+        </property>
+        <property name="url">
+            <value>${jdbc.url}</value>
+        </property>
+        <property name="username">
+            <value>${jdbc.username}</value>
+        </property>
+        <property name="password">
+            <value>${jdbc.password}</value>
+        </property>
+        连接池最大使用连接数
+        <property name="maxActive">
+            <value>20</value>
+        </property>
+        初始化连接大小
+        <property name="initialSize">
+            <value>1</value>
+        </property>
+        获取连接最大等待时间
+        <property name="maxWait">
+            <value>60000</value>
+        </property>
+        连接池最大空闲
+        <property name="maxIdle">
+            <value>20</value>
+        </property>
+        连接池最小空闲
+        <property name="minIdle">
+            <value>3</value>
+        </property>
+        自动清除无用连接
+        <property name="removeAbandoned">
+            <value>true</value>
+        </property>
+        清除无用连接的等待时间
+        <property name="removeAbandonedTimeout">
+            <value>180</value>
+        </property>
+        连接属性
+        <property name="connectionProperties">
+            <value>clientEncoding=UTF-8</value>
+        </property>
+    </bean> -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="configLocation" value="classpath:conf/mybatis-config.xml"/>
+        <property name="mapperLocations">
+            <list>
+                <value>classpath:com/earyant/**/*.xml</value>
+                <value>classpath*:/mapper/*.xml</value>
+            </list>
+        </property>
+    </bean>
 
-	<!-- 全局异常配置 end -->
+    <!-- 通过扫描的模式,自动注入bean -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.earyant.sys.**.dao"/>
+    </bean>
+    <!--创建事务管理平台-->
+    <bean id="transactionManager"
+          class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+    <!-- 事务通知 (transaction-manager = "transactionManager" 可略)-->
+    <tx:advice id="transactionAdvice" transaction-manager="transactionManager">
+        <tx:attributes>
+            <tx:method name="get*" read-only="false" rollback-for="Exception"/>
+            <tx:method name="*" read-only="false" rollback-for="Exception"/>
+        </tx:attributes>
+    </tx:advice>
+    <aop:config>
+        <aop:advisor advice-ref="transactionAdvice"
+                     pointcut="execution(public * com.earyant.*.service.*Service.*(..))"/>
+        <aop:advisor advice-ref="transactionAdvice"
+                     pointcut="execution(public * com.earyant.*.*.service.*Service.*(..))"/>
+        <aop:advisor advice-ref="transactionAdvice"
+                     pointcut="execution(public * com.earyant.*.*.*.service.*Service.*(..))"/>
+        <aop:advisor advice-ref="transactionAdvice"
+                     pointcut="execution(public * com.earyant.*.*.*.*.service.*Service.*(..))"/>
+    </aop:config>
+    <aop:aspectj-autoproxy proxy-target-class="true"/>
+    <!-- 加载bean管理 -->
+    <!-- <bean class="com.hnatourism.framework.utils.BeanUtils"
+        lazy-init="false">
+    </bean> -->
+    <!-- 全局异常配置 start -->
+    <!-- 系统错误转发配置[并记录错误日志] -->
+    <bean
+            class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+        <property name="defaultErrorView" value="500"></property>   <!-- 默认为500，系统错误(error.jsp) -->
+        <property name="defaultStatusCode" value="404"></property>
+        <property name="statusCodes"><!-- 配置多个statusCode -->
+            <props>
+                <prop key="error">500</prop>  <!-- error.jsp -->
+                <prop key="error1">404</prop>    <!-- error1.jsp -->
+            </props>
+        </property>
+        <property name="exceptionMappings">
+            <props>
+                <!-- 这里你可以根据需要定义N多个错误异常转发 -->
+                <prop key="java.sql.SQLException">error/dbError</prop> <!-- 数据库错误(dbError.jsp) -->
+                <prop key="org.springframework.web.bind.ServletRequestBindingException">error/bizError
+                </prop> <!-- 参数绑定错误(如：必须参数没传递)(bizError.jsp) -->
+                <prop key="java.lang.IllegalArgumentException">error/paramError</prop>  <!-- 参数错误(paramError.jsp) -->
+                <prop key="org.springframework.validation.BindException">error/paramTypeError
+                </prop>  <!-- 参数类型有误(paramTypeError.jsp) -->
+                <prop key="java.lang.Exception">error/notDefinedError</prop>  <!-- 其他错误为'未定义错误'(notDefinedError.jsp) -->
+            </props>
+        </property>
+    </bean>
+    <context:property-placeholder location="classpath:conf/config.properties"/>
+    <!-- 自动扫描(自动注入) -->
+    <context:component-scan base-package="com.earyant.web.service"/>
+    <context:component-scan base-package="com.earyant.wechat.*"/>
+
+    <!-- 全局异常配置 end -->
 </beans>

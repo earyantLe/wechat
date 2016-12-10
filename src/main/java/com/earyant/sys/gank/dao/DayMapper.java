@@ -15,6 +15,7 @@ public interface DayMapper {
     int updateByPrimaryKeySelective(Day record);
 
     int updateByPrimaryKey(Day record);
+
     Day selectBydate(String date);
 
     Day select();

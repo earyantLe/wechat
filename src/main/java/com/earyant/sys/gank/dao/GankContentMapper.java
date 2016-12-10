@@ -18,5 +18,6 @@ public interface GankContentMapper {
     int updateByPrimaryKeyWithBLOBs(GankContent record);
 
     int updateByPrimaryKey(GankContent record);
+
     List<GankContent> selectByNewDate(String date);
 }

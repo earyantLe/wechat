@@ -1,107 +1,107 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.earyant.sys.userRole.dao.UserRoleMapper" >
-  <resultMap id="BaseResultMap" type="com.earyant.sys.userRole.domain.UserRole" >
-    <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="roleId" property="roleid" jdbcType="INTEGER" />
-    <result column="userId" property="userid" jdbcType="INTEGER" />
-  </resultMap>
-  <resultMap id="BaseResultMapUserRoleVo" type="userRoleVo" >
-    <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="roleId" property="roleid" jdbcType="INTEGER" />
-    <result column="userId" property="userid" jdbcType="INTEGER" />
-    <result column="roleCode" property="rolecode" jdbcType="VARCHAR"  />
-  </resultMap>
-  
-  <sql id="Base_Column_List" >
-    id, roleId, userId
-  </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
-    <include refid="Base_Column_List" />
-    from user_role
-    where id = #{id,jdbcType=INTEGER}
-  </select>
-  
-  <select id="selectByRoleByUserId" resultMap="BaseResultMapUserRoleVo" parameterType="userRoleVo" >
-    select 
-    user_role.id,
-    user_role.roleId,
-    user_role.userId,
-    role.roleCode
-    from user,user_role,role 
-    where user.id=user_role.userId and role.id=roleId
-    <if test="userid!=null and userid!=''">
-    	 and user_role.userId=#{userid,jdbcType=INTEGER} 
-    </if>
-    
-  </select>
-  
-  <select id="selectByUserId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
-    <include refid="Base_Column_List" />
-    from user_role
-    where userId = #{userid,jdbcType=INTEGER}
-  </select>
-  
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from user_role
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="com.earyant.sys.userRole.domain.UserRole" >
-    insert into user_role (id, roleId, userId
-      )
-    values (#{id,jdbcType=INTEGER}, #{roleid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}
-      )
-  </insert>
-  <insert id="insertSelective" parameterType="com.earyant.sys.userRole.domain.UserRole" >
-    insert into user_role
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        id,
-      </if>
-      <if test="roleid != null" >
-        roleId,
-      </if>
-      <if test="userid != null" >
-        userId,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="roleid != null" >
-        #{roleid,jdbcType=INTEGER},
-      </if>
-      <if test="userid != null" >
-        #{userid,jdbcType=INTEGER},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.earyant.sys.userRole.domain.UserRole" >
-    update user_role
-    <set >
-      <if test="roleid != null" >
-        roleId = #{roleid,jdbcType=INTEGER},
-      </if>
-      <if test="userid != null" >
-        userId = #{userid,jdbcType=INTEGER},
-      </if>
-    </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByUserId" parameterType="com.earyant.sys.userRole.domain.UserRole" >
-    update user_role
-    set roleId = #{roleid,jdbcType=INTEGER},
-      userId = #{userid,jdbcType=INTEGER}
-    where userId = #{userid,jdbcType=INTEGER}
-  </update>
-   
-  <update id="updateByPrimaryKey" parameterType="com.earyant.sys.userRole.domain.UserRole" >
-    update user_role
-    set roleId = #{roleid,jdbcType=INTEGER},
-      userId = #{userid,jdbcType=INTEGER}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
+<mapper namespace="com.earyant.sys.userRole.dao.UserRoleMapper">
+    <resultMap id="BaseResultMap" type="com.earyant.sys.userRole.domain.UserRole">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="roleId" property="roleid" jdbcType="INTEGER"/>
+        <result column="userId" property="userid" jdbcType="INTEGER"/>
+    </resultMap>
+    <resultMap id="BaseResultMapUserRoleVo" type="userRoleVo">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="roleId" property="roleid" jdbcType="INTEGER"/>
+        <result column="userId" property="userid" jdbcType="INTEGER"/>
+        <result column="roleCode" property="rolecode" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id, roleId, userId
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from user_role
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+
+    <select id="selectByRoleByUserId" resultMap="BaseResultMapUserRoleVo" parameterType="userRoleVo">
+        select
+        user_role.id,
+        user_role.roleId,
+        user_role.userId,
+        role.roleCode
+        from user,user_role,role
+        where user.id=user_role.userId and role.id=roleId
+        <if test="userid!=null and userid!=''">
+            and user_role.userId=#{userid,jdbcType=INTEGER}
+        </if>
+
+    </select>
+
+    <select id="selectByUserId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from user_role
+        where userId = #{userid,jdbcType=INTEGER}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from user_role
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.earyant.sys.userRole.domain.UserRole">
+        insert into user_role (id, roleId, userId
+        )
+        values (#{id,jdbcType=INTEGER}, #{roleid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}
+        )
+    </insert>
+    <insert id="insertSelective" parameterType="com.earyant.sys.userRole.domain.UserRole">
+        insert into user_role
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="roleid != null">
+                roleId,
+            </if>
+            <if test="userid != null">
+                userId,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="roleid != null">
+                #{roleid,jdbcType=INTEGER},
+            </if>
+            <if test="userid != null">
+                #{userid,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.earyant.sys.userRole.domain.UserRole">
+        update user_role
+        <set>
+            <if test="roleid != null">
+                roleId = #{roleid,jdbcType=INTEGER},
+            </if>
+            <if test="userid != null">
+                userId = #{userid,jdbcType=INTEGER},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByUserId" parameterType="com.earyant.sys.userRole.domain.UserRole">
+        update user_role
+        set roleId = #{roleid,jdbcType=INTEGER},
+        userId = #{userid,jdbcType=INTEGER}
+        where userId = #{userid,jdbcType=INTEGER}
+    </update>
+
+    <update id="updateByPrimaryKey" parameterType="com.earyant.sys.userRole.domain.UserRole">
+        update user_role
+        set roleId = #{roleid,jdbcType=INTEGER},
+        userId = #{userid,jdbcType=INTEGER}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
 </mapper>

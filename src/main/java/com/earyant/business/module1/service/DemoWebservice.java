@@ -9,8 +9,8 @@ import javax.ws.rs.PathParam;
 @Path("/test")
 public interface DemoWebservice {
 
-//	@GET
-	@POST
-	@Path("/{user}")
-	public String getDevices(@PathParam("user") String user);
+    //	@GET
+    @POST
+    @Path("/{user}")
+    public String getDevices(@PathParam("user") String user);
 }

@@ -16,6 +16,11 @@ public class WechatServiceImpl implements WechatService {
     private TokenMapper tokenMapper;
     Logger logger = LoggerFactory.getLogger(this.getClass());
 
+    /**
+     * 改方法已经失效了
+     *
+     * @param key token
+     */
     @Override
     public void setToken(String key) {
         Token tokn = new Token();
@@ -24,28 +29,17 @@ public class WechatServiceImpl implements WechatService {
         tokenMapper.updateByPrimaryKey(tokn);
     }
 
+    /**
+     * 保存token到数据库中
+     *
+     * @param tokens 微信官方获取的token
+     * @throws Exception 保存到数据失败
+     */
     @Override
 //    @Scheduled(cron = "0 0 0/1  * * ?")
-    public void setTokens(String tokens) throws Exception {
-//		Map<String, String> params = new HashMap<String, String>();
-        //获取token执行体
-//		params.put("grant_type", "client_credential");
-//		params.put("appid", GlobalConstants.getInterfaceUrl("appid"));
-//		params.put("secret", GlobalConstants.getInterfaceUrl("AppSecret"));
-//		String jstoken = HttpUtils.sendGet(
-//				GlobalConstants.getInterfaceUrl("tokenUrl"), params);
-//        String access_token = tokens;
-//        GlobalConstants.interfaceUrlProperties.put("access_token", tokens);
-
-
-        Token tokn = new Token();
-        tokn.setId(0);
-        tokn.setToken(tokens);
-        logger.error(tokens);
-        int num = tokenMapper.updateByPrimaryKey(tokn);
-//        logger.error(num + "");
-//        Token t = tokenMapper.selectByPrimaryKey(0);
-//        logger.info("id:::" + t.getId() + "   token    " + t.getToken());
+    public void setTokens(Token tokens) throws Exception {
+        logger.error(tokens.toString());
+        tokenMapper.updateByPrimaryKey(tokens);
     }
 
 }

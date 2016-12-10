@@ -12,7 +12,7 @@ public class AllContentList {
 
     private String desc;
 
-    private List<String> images ;
+    private List<String> images;
 
     private String publishedAt;
 
@@ -26,64 +26,83 @@ public class AllContentList {
 
     private String who;
 
-    public void set_id(String _id){
+    public void set_id(String _id) {
         this._id = _id;
     }
-    public String get_id(){
+
+    public String get_id() {
         return this._id;
     }
-    public void setCreatedAt(String createdAt){
+
+    public void setCreatedAt(String createdAt) {
         this.createdAt = createdAt;
     }
-    public String getCreatedAt(){
+
+    public String getCreatedAt() {
         return this.createdAt;
     }
-    public void setDesc(String desc){
+
+    public void setDesc(String desc) {
         this.desc = desc;
     }
-    public String getDesc(){
+
+    public String getDesc() {
         return this.desc;
     }
-    public void setString(List<String> images){
+
+    public void setString(List<String> images) {
         this.images = images;
     }
-    public List<String> getString(){
+
+    public List<String> getString() {
         return this.images;
     }
-    public void setPublishedAt(String publishedAt){
+
+    public void setPublishedAt(String publishedAt) {
         this.publishedAt = publishedAt;
     }
-    public String getPublishedAt(){
+
+    public String getPublishedAt() {
         return this.publishedAt;
     }
-    public void setSource(String source){
+
+    public void setSource(String source) {
         this.source = source;
     }
-    public String getSource(){
+
+    public String getSource() {
         return this.source;
     }
-    public void setType(String type){
+
+    public void setType(String type) {
         this.type = type;
     }
-    public String getType(){
+
+    public String getType() {
         return this.type;
     }
-    public void setUrl(String url){
+
+    public void setUrl(String url) {
         this.url = url;
     }
-    public String getUrl(){
+
+    public String getUrl() {
         return this.url;
     }
-    public void setUsed(boolean used){
+
+    public void setUsed(boolean used) {
         this.used = used;
     }
-    public boolean getUsed(){
+
+    public boolean getUsed() {
         return this.used;
     }
-    public void setWho(String who){
+
+    public void setWho(String who) {
         this.who = who;
     }
-    public String getWho(){
+
+    public String getWho() {
         return this.who;
     }
 }

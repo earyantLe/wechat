@@ -9,6 +9,7 @@ public class QuartzJob {
     private static Logger logger = Logger.getLogger(QuartzJob.class);
     @Autowired
     private WeChatTaskService weChatTaskService;
+
     /**
      * @param
      * @Description: 任务执行获取token

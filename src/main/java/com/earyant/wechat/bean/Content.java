@@ -10,18 +10,21 @@ import java.util.List;
 public class Content {
     private boolean error;
 
-    private List<ContentResult> results ;
+    private List<ContentResult> results;
 
-    public void setError(boolean error){
+    public void setError(boolean error) {
         this.error = error;
     }
-    public boolean getError(){
+
+    public boolean getError() {
         return this.error;
     }
-    public void setResults(List<ContentResult> results){
+
+    public void setResults(List<ContentResult> results) {
         this.results = results;
     }
-    public List<ContentResult> getResults(){
+
+    public List<ContentResult> getResults() {
         return this.results;
     }
 }

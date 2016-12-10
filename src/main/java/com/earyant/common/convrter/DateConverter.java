@@ -16,9 +16,9 @@ public class DateConverter implements WebBindingInitializer {
 //    }
 
     @Override
-    public void initBinder(WebDataBinder binder, WebRequest request) {  
+    public void initBinder(WebDataBinder binder, WebRequest request) {
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-        binder.registerCustomEditor(Date.class, new CustomDateEditor(df,  true));
-    }  
-  
+        binder.registerCustomEditor(Date.class, new CustomDateEditor(df, true));
+    }
+
 }  

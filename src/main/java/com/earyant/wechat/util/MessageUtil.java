@@ -1,29 +1,21 @@
 package com.earyant.wechat.util;
 
-import java.io.InputStream;
-import java.io.Writer;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-
-import org.dom4j.Document;
-import org.dom4j.Element;
-import org.dom4j.io.SAXReader;
-
-import com.earyant.wechat.message.resp.Article;
-import com.earyant.wechat.message.resp.ImageMessage;
-import com.earyant.wechat.message.resp.MusicMessage;
-import com.earyant.wechat.message.resp.NewsMessage;
-import com.earyant.wechat.message.resp.TextMessage;
-import com.earyant.wechat.message.resp.VideoMessage;
-import com.earyant.wechat.message.resp.VoiceMessage;
+import com.earyant.wechat.message.resp.*;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.core.util.QuickWriter;
 import com.thoughtworks.xstream.io.HierarchicalStreamWriter;
 import com.thoughtworks.xstream.io.xml.PrettyPrintWriter;
 import com.thoughtworks.xstream.io.xml.XppDriver;
+import org.dom4j.Document;
+import org.dom4j.Element;
+import org.dom4j.io.SAXReader;
+
+import javax.servlet.http.HttpServletRequest;
+import java.io.InputStream;
+import java.io.Writer;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * ClassName: MessageUtil

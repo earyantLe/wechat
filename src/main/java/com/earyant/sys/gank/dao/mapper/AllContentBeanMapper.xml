@@ -12,17 +12,18 @@
         <result column="t_used" jdbcType="CHAR" property="tUsed"/>
         <result column="t_who" jdbcType="CHAR" property="tWho"/>
     </resultMap>
-    <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.earyant.sys.gank.domain.AllContentBeanWithBLOBs">
+    <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs"
+               type="com.earyant.sys.gank.domain.AllContentBeanWithBLOBs">
         <result column="t_images" jdbcType="LONGVARCHAR" property="tImages"/>
         <result column="t_url" jdbcType="LONGVARCHAR" property="tUrl"/>
     </resultMap>
     <sql id="Base_Column_List">
-    t_id, t_content_id, t_createdAt, t_desc, t_publishedAt, t_source, t_type, t_used, 
-    t_who
-  </sql>
+        t_id, t_content_id, t_createdAt, t_desc, t_publishedAt, t_source, t_type, t_used,
+        t_who
+    </sql>
     <sql id="Blob_Column_List">
-    t_images, t_url
-  </sql>
+        t_images, t_url
+    </sql>
     <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
         select
         <include refid="Base_Column_List"/>
@@ -32,19 +33,19 @@
         where t_id = #{tId,jdbcType=INTEGER}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from t_all_content
-    where t_id = #{tId,jdbcType=INTEGER}
-  </delete>
+        delete from t_all_content
+        where t_id = #{tId,jdbcType=INTEGER}
+    </delete>
     <insert id="insert" parameterType="com.earyant.sys.gank.domain.AllContentBeanWithBLOBs">
-    insert into t_all_content (t_id, t_content_id, t_createdAt, 
-      t_desc, t_publishedAt, t_source, 
-      t_type, t_used, t_who, t_images, 
-      t_url)
-    values (#{tId,jdbcType=INTEGER}, #{tContentId,jdbcType=CHAR}, #{tCreatedat,jdbcType=CHAR}, 
-      #{tDesc,jdbcType=CHAR}, #{tPublishedat,jdbcType=CHAR}, #{tSource,jdbcType=CHAR}, 
-      #{tType,jdbcType=CHAR}, #{tUsed,jdbcType=CHAR}, #{tWho,jdbcType=CHAR}, #{tImages,jdbcType=LONGVARCHAR}, 
-      #{tUrl,jdbcType=LONGVARCHAR})
-  </insert>
+        insert into t_all_content (t_id, t_content_id, t_createdAt,
+        t_desc, t_publishedAt, t_source,
+        t_type, t_used, t_who, t_images,
+        t_url)
+        values (#{tId,jdbcType=INTEGER}, #{tContentId,jdbcType=CHAR}, #{tCreatedat,jdbcType=CHAR},
+        #{tDesc,jdbcType=CHAR}, #{tPublishedat,jdbcType=CHAR}, #{tSource,jdbcType=CHAR},
+        #{tType,jdbcType=CHAR}, #{tUsed,jdbcType=CHAR}, #{tWho,jdbcType=CHAR}, #{tImages,jdbcType=LONGVARCHAR},
+        #{tUrl,jdbcType=LONGVARCHAR})
+    </insert>
     <insert id="insertSelective" parameterType="com.earyant.sys.gank.domain.AllContentBeanWithBLOBs">
         insert into t_all_content
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -155,31 +156,31 @@
         where t_id = #{tId,jdbcType=INTEGER}
     </update>
     <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.earyant.sys.gank.domain.AllContentBeanWithBLOBs">
-    update t_all_content
-    set t_content_id = #{tContentId,jdbcType=CHAR},
-      t_createdAt = #{tCreatedat,jdbcType=CHAR},
-      t_desc = #{tDesc,jdbcType=CHAR},
-      t_publishedAt = #{tPublishedat,jdbcType=CHAR},
-      t_source = #{tSource,jdbcType=CHAR},
-      t_type = #{tType,jdbcType=CHAR},
-      t_used = #{tUsed,jdbcType=CHAR},
-      t_who = #{tWho,jdbcType=CHAR},
-      t_images = #{tImages,jdbcType=LONGVARCHAR},
-      t_url = #{tUrl,jdbcType=LONGVARCHAR}
-    where t_id = #{tId,jdbcType=INTEGER}
-  </update>
+        update t_all_content
+        set t_content_id = #{tContentId,jdbcType=CHAR},
+        t_createdAt = #{tCreatedat,jdbcType=CHAR},
+        t_desc = #{tDesc,jdbcType=CHAR},
+        t_publishedAt = #{tPublishedat,jdbcType=CHAR},
+        t_source = #{tSource,jdbcType=CHAR},
+        t_type = #{tType,jdbcType=CHAR},
+        t_used = #{tUsed,jdbcType=CHAR},
+        t_who = #{tWho,jdbcType=CHAR},
+        t_images = #{tImages,jdbcType=LONGVARCHAR},
+        t_url = #{tUrl,jdbcType=LONGVARCHAR}
+        where t_id = #{tId,jdbcType=INTEGER}
+    </update>
     <update id="updateByPrimaryKey" parameterType="com.earyant.sys.gank.domain.AllContentBean">
-    update t_all_content
-    set t_content_id = #{tContentId,jdbcType=CHAR},
-      t_createdAt = #{tCreatedat,jdbcType=CHAR},
-      t_desc = #{tDesc,jdbcType=CHAR},
-      t_publishedAt = #{tPublishedat,jdbcType=CHAR},
-      t_source = #{tSource,jdbcType=CHAR},
-      t_type = #{tType,jdbcType=CHAR},
-      t_used = #{tUsed,jdbcType=CHAR},
-      t_who = #{tWho,jdbcType=CHAR}
-    where t_id = #{tId,jdbcType=INTEGER}
-  </update>
+        update t_all_content
+        set t_content_id = #{tContentId,jdbcType=CHAR},
+        t_createdAt = #{tCreatedat,jdbcType=CHAR},
+        t_desc = #{tDesc,jdbcType=CHAR},
+        t_publishedAt = #{tPublishedat,jdbcType=CHAR},
+        t_source = #{tSource,jdbcType=CHAR},
+        t_type = #{tType,jdbcType=CHAR},
+        t_used = #{tUsed,jdbcType=CHAR},
+        t_who = #{tWho,jdbcType=CHAR}
+        where t_id = #{tId,jdbcType=INTEGER}
+    </update>
     <resultMap id="BaseResultMap" type="com.earyant.sys.gank.domain.AllContentBean">
         <id column="id" jdbcType="INTEGER" property="id"/>
         <result column="content_id" jdbcType="CHAR" property="contentId"/>
@@ -191,16 +192,17 @@
         <result column="used" jdbcType="CHAR" property="used"/>
         <result column="who" jdbcType="CHAR" property="who"/>
     </resultMap>
-    <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.earyant.sys.gank.domain.AllContentBeanWithBLOBs">
+    <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs"
+               type="com.earyant.sys.gank.domain.AllContentBeanWithBLOBs">
         <result column="images" jdbcType="LONGVARCHAR" property="images"/>
         <result column="url" jdbcType="LONGVARCHAR" property="url"/>
     </resultMap>
     <sql id="Base_Column_List">
-    id, content_id, createdAt, desc, publishedAt, source, type, used, who
-  </sql>
+        id, content_id, createdAt, desc, publishedAt, source, type, used, who
+    </sql>
     <sql id="Blob_Column_List">
-    images, url
-  </sql>
+        images, url
+    </sql>
     <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
         select
         <include refid="Base_Column_List"/>
@@ -210,19 +212,19 @@
         where id = #{id,jdbcType=INTEGER}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from t_all_content
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
+        delete from t_all_content
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
     <insert id="insert" parameterType="com.earyant.sys.gank.domain.AllContentBeanWithBLOBs">
-    insert into t_all_content (id, content_id, createdAt, 
-      desc, publishedAt, source, type, 
-      used, who, images, url
-      )
-    values (#{id,jdbcType=INTEGER}, #{contentId,jdbcType=CHAR}, #{createdat,jdbcType=CHAR}, 
-      #{desc,jdbcType=CHAR}, #{publishedat,jdbcType=CHAR}, #{source,jdbcType=CHAR}, #{type,jdbcType=CHAR}, 
-      #{used,jdbcType=CHAR}, #{who,jdbcType=CHAR}, #{images,jdbcType=LONGVARCHAR}, #{url,jdbcType=LONGVARCHAR}
-      )
-  </insert>
+        insert into t_all_content (id, content_id, createdAt,
+        desc, publishedAt, source, type,
+        used, who, images, url
+        )
+        values (#{id,jdbcType=INTEGER}, #{contentId,jdbcType=CHAR}, #{createdat,jdbcType=CHAR},
+        #{desc,jdbcType=CHAR}, #{publishedat,jdbcType=CHAR}, #{source,jdbcType=CHAR}, #{type,jdbcType=CHAR},
+        #{used,jdbcType=CHAR}, #{who,jdbcType=CHAR}, #{images,jdbcType=LONGVARCHAR}, #{url,jdbcType=LONGVARCHAR}
+        )
+    </insert>
     <insert id="insertSelective" parameterType="com.earyant.sys.gank.domain.AllContentBeanWithBLOBs">
         insert into t_all_content
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -333,31 +335,31 @@
         where id = #{id,jdbcType=INTEGER}
     </update>
     <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.earyant.sys.gank.domain.AllContentBeanWithBLOBs">
-    update t_all_content
-    set content_id = #{contentId,jdbcType=CHAR},
-      createdAt = #{createdat,jdbcType=CHAR},
-      desc = #{desc,jdbcType=CHAR},
-      publishedAt = #{publishedat,jdbcType=CHAR},
-      source = #{source,jdbcType=CHAR},
-      type = #{type,jdbcType=CHAR},
-      used = #{used,jdbcType=CHAR},
-      who = #{who,jdbcType=CHAR},
-      images = #{images,jdbcType=LONGVARCHAR},
-      url = #{url,jdbcType=LONGVARCHAR}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
+        update t_all_content
+        set content_id = #{contentId,jdbcType=CHAR},
+        createdAt = #{createdat,jdbcType=CHAR},
+        desc = #{desc,jdbcType=CHAR},
+        publishedAt = #{publishedat,jdbcType=CHAR},
+        source = #{source,jdbcType=CHAR},
+        type = #{type,jdbcType=CHAR},
+        used = #{used,jdbcType=CHAR},
+        who = #{who,jdbcType=CHAR},
+        images = #{images,jdbcType=LONGVARCHAR},
+        url = #{url,jdbcType=LONGVARCHAR}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
     <update id="updateByPrimaryKey" parameterType="com.earyant.sys.gank.domain.AllContentBean">
-    update t_all_content
-    set content_id = #{contentId,jdbcType=CHAR},
-      createdAt = #{createdat,jdbcType=CHAR},
-      desc = #{desc,jdbcType=CHAR},
-      publishedAt = #{publishedat,jdbcType=CHAR},
-      source = #{source,jdbcType=CHAR},
-      type = #{type,jdbcType=CHAR},
-      used = #{used,jdbcType=CHAR},
-      who = #{who,jdbcType=CHAR}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
+        update t_all_content
+        set content_id = #{contentId,jdbcType=CHAR},
+        createdAt = #{createdat,jdbcType=CHAR},
+        desc = #{desc,jdbcType=CHAR},
+        publishedAt = #{publishedat,jdbcType=CHAR},
+        source = #{source,jdbcType=CHAR},
+        type = #{type,jdbcType=CHAR},
+        used = #{used,jdbcType=CHAR},
+        who = #{who,jdbcType=CHAR}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
 
 
     <select id="selectByGankId" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String">
@@ -371,19 +373,19 @@
 
 
     <update id="updateByGankIdWithBLOBs" parameterType="com.earyant.sys.gank.domain.AllContentBeanWithBLOBs">
-     update t_all_content
-    set t_content_id = #{tContentId,jdbcType=CHAR},
-    t_createdAt = #{tCreatedat,jdbcType=CHAR},
-    t_desc = #{tDesc,jdbcType=CHAR},
-    t_publishedAt = #{tPublishedat,jdbcType=CHAR},
-    t_source = #{tSource,jdbcType=CHAR},
-    t_type = #{tType,jdbcType=CHAR},
-    t_used = #{tUsed,jdbcType=CHAR},
-    t_who = #{tWho,jdbcType=CHAR},
-    t_images = #{tImages,jdbcType=LONGVARCHAR},
-    t_url = #{tUrl,jdbcType=LONGVARCHAR}
-    where t_content_id = #{tContentId,jdbcType=CHAR}
-  </update>
+        update t_all_content
+        set t_content_id = #{tContentId,jdbcType=CHAR},
+        t_createdAt = #{tCreatedat,jdbcType=CHAR},
+        t_desc = #{tDesc,jdbcType=CHAR},
+        t_publishedAt = #{tPublishedat,jdbcType=CHAR},
+        t_source = #{tSource,jdbcType=CHAR},
+        t_type = #{tType,jdbcType=CHAR},
+        t_used = #{tUsed,jdbcType=CHAR},
+        t_who = #{tWho,jdbcType=CHAR},
+        t_images = #{tImages,jdbcType=LONGVARCHAR},
+        t_url = #{tUrl,jdbcType=LONGVARCHAR}
+        where t_content_id = #{tContentId,jdbcType=CHAR}
+    </update>
 
     <select id="selectByType" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String">
         select

@@ -1,4 +1,3 @@
-
 package com.earyant.sys.wechat.service.impl;
 
 import com.earyant.sys.wechat.service.InterfaceUrlIntiService;
@@ -25,7 +24,7 @@ public class InterfaceUrlInti implements InterfaceUrlIntiService {
     @Resource
     private WeChatTaskService weChatTaskService;
 
-        private static InterfaceUrlInti interfaceUrlInti;
+    private static InterfaceUrlInti interfaceUrlInti;
 
     public void setUserInfo(WeChatTaskService weChatTaskService) {
         this.weChatTaskService = weChatTaskService;
@@ -37,7 +36,8 @@ public class InterfaceUrlInti implements InterfaceUrlIntiService {
         interfaceUrlInti.weChatTaskService = this.weChatTaskService;
 
     }
-//    @Override
+
+    //    @Override
     public static void initDate() {
         ClassLoader cl = Thread.currentThread().getContextClassLoader();
         Properties props = new Properties();
