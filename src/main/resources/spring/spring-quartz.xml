@@ -3,7 +3,7 @@
 
 <beans>
     <!-- 要调用的工作类 -->
-    <bean id="quartzJob" class="com.earyant.wechat.quartz.QuartzJob"></bean>
+    <bean id="quartzJob" class="com.earyant.wechat.quartz.QuartzJob"/>
 
     <!-- 定义调用对象和调用对象的方法 -->
     <bean id="jobtaskForToken"

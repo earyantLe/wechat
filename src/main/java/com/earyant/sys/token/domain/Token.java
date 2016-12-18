@@ -38,4 +38,10 @@ public class Token {
     public void setToken(String token) {
         this.token = token;
     }
+
+    @Override
+    public String toString() {
+
+        return "id 是 " + id + "，token是" + token + "，appid是" + appid + "，appsecret是+" + appSecret + "";
+    }
 }

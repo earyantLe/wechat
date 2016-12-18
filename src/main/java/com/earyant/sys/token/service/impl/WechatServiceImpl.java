@@ -38,7 +38,7 @@ public class WechatServiceImpl implements WechatService {
     @Override
 //    @Scheduled(cron = "0 0 0/1  * * ?")
     public void setTokens(Token tokens) throws Exception {
-        logger.error(tokens.toString());
+        logger.info(tokens.toString());
         tokenMapper.updateByPrimaryKey(tokens);
     }
 

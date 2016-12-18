@@ -229,11 +229,10 @@ public class EventDispatcherImpl implements EventDisPatcherService {
                 article.setTitle(allContentBeanWithBLOB.gettDesc());  //图文消息标题
                 article.setUrl(allContentBeanWithBLOB.gettUrl());  //图文url链接
                 list.add(article);     //这里发送的是单图文，如果需要发送多图文则在这里list中加入多个Article即可！
-
             }
         } else {
             logger.info("没有任何数据。。。");
-            return null;
+            return "没有任何数据。。。";
         }
         newmsg.setArticleCount(list.size());
         newmsg.setArticles(list);
@@ -243,7 +242,7 @@ public class EventDispatcherImpl implements EventDisPatcherService {
     @Override
     public String getOneDayGank(NewsMessage newmsg) throws Exception {
         //先获取所有日期。
-        String date = dayMapper.select().getDayDate();
+        String date = dayMapper.select().get(0).getDayDate();
         Calendar calendar;
         calendar = Calendar.getInstance();
         //再通过日期获取出该日的数据；

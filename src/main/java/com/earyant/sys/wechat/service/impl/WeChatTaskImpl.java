@@ -52,6 +52,7 @@ public class WeChatTaskImpl implements WeChatTaskService {
 
         List<Token> tokens = tokenMapper.selectAll();
         tokens.forEach((Token o) -> {
+            logger.debug(o.toString());
             Map<String, String> params = new HashMap<String, String>();
             //获取token执行体
             params.put("grant_type", "client_credential");
@@ -66,6 +67,7 @@ public class WeChatTaskImpl implements WeChatTaskService {
             } catch (Exception e) {
                 logger.info("获取token失败，原因是：" + e.toString());
             }
+            logger.info(jstoken);
             String access_token = JSONObject.fromObject(jstoken).getString(
                     "access_token"); // 获取到token并赋值保存
             GlobalConstants.interfaceUrlProperties.put("access_token", access_token);

@@ -6,7 +6,7 @@
         <result column="token" property="token" jdbcType="CHAR"/>
     </resultMap>
     <sql id="Base_Column_List">
-        id , token, upt_time, appid, app_secret
+        id , token, upt_time, appid, appSecret
     </sql>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
         select

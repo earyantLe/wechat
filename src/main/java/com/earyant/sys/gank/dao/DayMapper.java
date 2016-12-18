@@ -3,6 +3,8 @@ package com.earyant.sys.gank.dao;
 
 import com.earyant.sys.gank.domain.Day;
 
+import java.util.List;
+
 public interface DayMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -18,5 +20,5 @@ public interface DayMapper {
 
     Day selectBydate(String date);
 
-    Day select();
+    List<Day> select();
 }
