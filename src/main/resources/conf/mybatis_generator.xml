@@ -12,9 +12,7 @@
             <property name="suppressAllComments" value="true"/>
         </commentGenerator>
         <!-- jdbc连接信息 -->
-        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://59.42.254.239:3306/cungoudb"
-                        userId="workapp" password="workapp2015"/>
+
 
         <!-- java类型解析器 可选配置 -->
         <javaTypeResolver>
